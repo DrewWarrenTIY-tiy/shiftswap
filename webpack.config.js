@@ -1,8 +1,16 @@
-module.exports = {
-    entry: "./src/scripts/entry.js",
-    output: {
-      path: __dirname,
-      filename: "./public/bundle.js"
+var debug = process.env.NODE_ENV !== "production";
+var path = require("path");
+var webpack = require('webpack');
+
+var DIST_DIR = path.resolve(__dirname, "dist");
+var SRC_DIR = path.resolve(__dirname, "src");
+
+var config = {
+  entry: SRC_DIR + "/app/index.js",
+  output: {
+    path: DIST_DIR + "/app",
+    filename: "bundle.js",
+    publicPath: "/app/"
   },
   module: {
     loaders: [
@@ -29,5 +37,7 @@ module.exports = {
          exclude: /(node_modules|bower_components)/
       }
     ]
-    }
-  };
+  }
+};
+
+module.exports = config;
