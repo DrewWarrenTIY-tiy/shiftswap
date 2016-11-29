@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import EmpList from './EmpList';
+
 import manager from './Manager.css';
 
 var firebase = require("firebase");
@@ -59,6 +61,7 @@ export default class Manager extends React.Component{
       <div className='manager'>
         <p>Test Data: {this.state.testdata[0]}</p>
         <p>Empl Data: {this.state.emplData.join(", ")}</p>
+        <EmpList emplData={this.state.emplData} />
       </div>
     )
   }
