@@ -16,17 +16,36 @@ var config = {
 firebase.initializeApp(config);
 
 // Get a reference to the database service
-var database = firebase.database();
+var fbdbRef = firebase.database().ref();
+var fbdbTest = fbdbRef.child('test');
+
+let data = [];
+
+function displayData(val, key) {
+  data.push(val)
+}
 
 export default class Manager extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      data: data
+    }
+  }
+  componentWillMount () {
+    fbdbTest.on("child_added", (snapshot) => {
+      displayData(snapshot.val(), snapshot.key);
+      this.setState({
+        data: data
+      });
+    }).bind(this)
+  }
 
   render () {
     return (
       <div className='manager'>
-        <p>Data: </p>
+        <p>Data: {this.state.data}</p>
       </div>
     )
   }
 }
-
-// {database.ref().child("test")}   LINE 26
