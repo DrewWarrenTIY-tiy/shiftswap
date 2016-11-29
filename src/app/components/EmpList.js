@@ -12,7 +12,16 @@ export default class EmpList extends React.Component {
 
     return (
       <div className='empList'>
-        <p> empList from EmpList.js props: {this.props.emplData.join(", ")}</p>
+        <select className='dropDown'>
+          <option value="blank"></option>
+          {this.props.emplData.map(function(c,i,a) {
+            return (
+              <option key={"Employee" + i} value={a[i]}>
+                {a[i]}
+              </option>
+            )
+          })}
+        </select>
       </div>
     )
   }
