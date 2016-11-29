@@ -22022,7 +22022,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _App = __webpack_require__(/*! ./App.css */ 179);
+	var _Manager = __webpack_require__(/*! ./Manager */ 179);
+	
+	var _Manager2 = _interopRequireDefault(_Manager);
+	
+	var _App = __webpack_require__(/*! ./App.css */ 184);
 	
 	var _App2 = _interopRequireDefault(_App);
 	
@@ -22046,7 +22050,11 @@
 	  _createClass(App, [{
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement('div', { className: 'container' });
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'container' },
+	        _react2.default.createElement(_Manager2.default, null)
+	      );
 	    }
 	  }]);
 	
@@ -22057,25 +22065,95 @@
 
 /***/ },
 /* 179 */
-/*!************************************!*\
-  !*** ./src/app/components/App.css ***!
-  \************************************/
+/*!***************************************!*\
+  !*** ./src/app/components/Manager.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Manager = __webpack_require__(/*! ./Manager.css */ 180);
+	
+	var _Manager2 = _interopRequireDefault(_Manager);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	// Set the configuration for your app
+	
+	// var config = {
+	//   apiKey: "AIzaSyDayn7zcog-05rzJNH6KeQyHTyttuzUT_8",
+	//   authDomain: "shiftswapforsues.firebaseapp.com",
+	//   databaseURL: "https://shiftswapforsues.firebaseio.com",
+	//   storageBucket: "shiftswapforsues.appspot.com"
+	// };
+	// firebase.initializeApp(config);
+	
+	// Get a reference to the database service
+	
+	// var database = firebase.database();
+	
+	var Manager = function (_React$Component) {
+	  _inherits(Manager, _React$Component);
+	
+	  function Manager() {
+	    _classCallCheck(this, Manager);
+	
+	    return _possibleConstructorReturn(this, (Manager.__proto__ || Object.getPrototypeOf(Manager)).apply(this, arguments));
+	  }
+	
+	  _createClass(Manager, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'manager' },
+	        'Cheese'
+	      );
+	    }
+	  }]);
+	
+	  return Manager;
+	}(_react2.default.Component);
+	
+	exports.default = Manager;
+
+/***/ },
+/* 180 */
+/*!****************************************!*\
+  !*** ./src/app/components/Manager.css ***!
+  \****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../~/css-loader!./App.css */ 180);
+	var content = __webpack_require__(/*! !./../../../~/css-loader!./Manager.css */ 181);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 182)(content, {});
+	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 183)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./App.css", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./App.css");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./Manager.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./Manager.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -22085,24 +22163,24 @@
 	}
 
 /***/ },
-/* 180 */
-/*!***************************************************!*\
-  !*** ./~/css-loader!./src/app/components/App.css ***!
-  \***************************************************/
+/* 181 */
+/*!*******************************************************!*\
+  !*** ./~/css-loader!./src/app/components/Manager.css ***!
+  \*******************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../~/css-loader/lib/css-base.js */ 181)();
+	exports = module.exports = __webpack_require__(/*! ./../../../~/css-loader/lib/css-base.js */ 182)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, "body {\n  background-color: darkslategrey;\n}\n", ""]);
+	exports.push([module.id, ".manager {\n  background-color: brown;\n}\n", ""]);
 	
 	// exports
 
 
 /***/ },
-/* 181 */
+/* 182 */
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
   \**************************************/
@@ -22161,7 +22239,7 @@
 
 
 /***/ },
-/* 182 */
+/* 183 */
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
@@ -22413,6 +22491,52 @@
 		if(oldSrc)
 			URL.revokeObjectURL(oldSrc);
 	}
+
+
+/***/ },
+/* 184 */
+/*!************************************!*\
+  !*** ./src/app/components/App.css ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../~/css-loader!./App.css */ 185);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 183)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./App.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./App.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 185 */
+/*!***************************************************!*\
+  !*** ./~/css-loader!./src/app/components/App.css ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../~/css-loader/lib/css-base.js */ 182)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "body {\n  background-color: darkslategrey;\n}\n", ""]);
+	
+	// exports
 
 
 /***/ }
