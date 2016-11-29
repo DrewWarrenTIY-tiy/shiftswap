@@ -21568,11 +21568,17 @@
 	// Get a reference to the database service
 	var fbdbRef = firebase.database().ref();
 	var fbdbTest = fbdbRef.child('test');
+	var fbdbEmpl = fbdbRef.child('employees');
 
-	var data = [];
+	var testdata = [];
+	var emplData = [];
 
-	function displayData(val, key) {
-	  data.push(val);
+	function displayTestData(val, key) {
+	  testdata.push(val);
+	}
+
+	function displayEmplData(val, key) {
+	  emplData.push(val);
 	}
 
 	var Manager = function (_React$Component) {
@@ -21584,7 +21590,8 @@
 	    var _this = _possibleConstructorReturn(this, (Manager.__proto__ || Object.getPrototypeOf(Manager)).call(this, props));
 
 	    _this.state = {
-	      data: data
+	      testdata: testdata,
+	      emplData: emplData
 	    };
 	    return _this;
 	  }
@@ -21595,9 +21602,15 @@
 	      var _this2 = this;
 
 	      fbdbTest.on("child_added", function (snapshot) {
-	        displayData(snapshot.val(), snapshot.key);
+	        displayTestData(snapshot.val(), snapshot.key);
 	        _this2.setState({
-	          data: data
+	          testdata: testdata
+	        });
+	      }).bind(this);
+	      fbdbEmpl.on("child_added", function (snapshot) {
+	        displayEmplData(snapshot.val(), snapshot.key);
+	        _this2.setState({
+	          emplData: emplData
 	        });
 	      }).bind(this);
 	    }
@@ -21610,8 +21623,14 @@
 	        _react2.default.createElement(
 	          'p',
 	          null,
-	          'Data: ',
-	          this.state.data
+	          'Test Data: ',
+	          this.state.testdata[0]
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          'Empl Data: ',
+	          this.state.emplData.join(", ")
 	        )
 	      );
 	    }

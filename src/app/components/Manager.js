@@ -18,25 +18,38 @@ firebase.initializeApp(config);
 // Get a reference to the database service
 var fbdbRef = firebase.database().ref();
 var fbdbTest = fbdbRef.child('test');
+var fbdbEmpl = fbdbRef.child('employees');
 
-let data = [];
+let testdata = [];
+let emplData = [];
 
-function displayData(val, key) {
-  data.push(val)
+function displayTestData(val, key) {
+  testdata.push(val)
+}
+
+function displayEmplData(val, key) {
+  emplData.push(val)
 }
 
 export default class Manager extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      data: data
+      testdata: testdata,
+      emplData: emplData,
     }
   }
   componentWillMount () {
     fbdbTest.on("child_added", (snapshot) => {
-      displayData(snapshot.val(), snapshot.key);
+      displayTestData(snapshot.val(), snapshot.key);
       this.setState({
-        data: data
+        testdata: testdata
+      });
+    }).bind(this)
+    fbdbEmpl.on("child_added", (snapshot) => {
+      displayEmplData(snapshot.val(), snapshot.key);
+      this.setState({
+        emplData: emplData
       });
     }).bind(this)
   }
@@ -44,7 +57,8 @@ export default class Manager extends React.Component{
   render () {
     return (
       <div className='manager'>
-        <p>Data: {this.state.data}</p>
+        <p>Test Data: {this.state.testdata[0]}</p>
+        <p>Empl Data: {this.state.emplData.join(", ")}</p>
       </div>
     )
   }
