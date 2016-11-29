@@ -12,7 +12,7 @@ export default class EmpList extends React.Component {
 
     return (
       <div className='empList'>
-        <p> empList: {this.props.emplData.join(", ")}</p>
+        <p> empList from EmpList.js props: {this.props.emplData.join(", ")}</p>
       </div>
     )
   }

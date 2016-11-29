@@ -60,7 +60,7 @@ export default class Manager extends React.Component{
     return (
       <div className='manager'>
         <p>Test Data: {this.state.testdata[0]}</p>
-        <p>Empl Data: {this.state.emplData.join(", ")}</p>
+        <p>Empl Data from state: {this.state.emplData.join(", ")}</p>
         <EmpList emplData={this.state.emplData} />
       </div>
     )

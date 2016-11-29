@@ -1,3 +1,7 @@
+#don't need to track the webpack created distribution
+
+dist/*
+
 # Created by https://www.gitignore.io/api/macos,node
 
 ### macOS ###
