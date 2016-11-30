@@ -13,10 +13,10 @@ export default class EmpList extends React.Component {
     return (
       <div className='empList'>
         <select className='dropDown'>
-          <option value="blank"></option>
+          <option  value="open">open</option>
           {this.props.emplData.map(function(c,i,a) {
             return (
-              <option key={"Employee" + i} value={a[i]}>
+                <option key={"Employee" + i} value={a[i]}>
                 {a[i]}
               </option>
             )
