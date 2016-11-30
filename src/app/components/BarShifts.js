@@ -14,7 +14,7 @@ export default class BarShifts extends React.Component {
 
     return (
       <div className="barShifts">
-         <div className="">Mon AM: {this.props.barShifts[0]} <EmpList emplData={this.props.emplData} /></div>
+         <p className="">Mon AM: {this.props.barShifts[0]} <EmpList emplData={this.props.emplData} /></p>
          <p>Tues AM: {this.props.barShifts[1]}</p>
          <p>Wed AM: {this.props.barShifts[2]}</p>
          <p>Thurs AM: {this.props.barShifts[3]}</p>

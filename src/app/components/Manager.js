@@ -76,8 +76,7 @@ export default class Manager extends React.Component{
         <p>Test Data: {this.state.testdata[0]}</p>
         <p>Empl Data from state: {this.state.emplData.join(", ")}</p>
         <p>Bar Shifts from state: {this.state.barShifts.join(", ")}</p>
-        <p>Drop down menu from EmpList.js</p>
-        <EmpList emplData={this.state.emplData} />
+      
         <BarShifts barShifts={this.state.barShifts}
         emplData={this.state.emplData} />
       </div>
