@@ -20,22 +20,12 @@ firebase.initializeApp(config);
 
 // Get a reference to the database service
 var fbdbRef = firebase.database().ref();
-var fbdbTest = fbdbRef.child('test');
 var fbdbEmpl = fbdbRef.child('employees');
 var fbdbBarShifts = fbdbRef.child('barshifts');
 
-//KEYS TEST//
-// let barShiftKeys = Object.keys(fbdbTest)
-// console.log(barShiftKeys);
-
-let testdata = [];
 let emplData = [];
 let barShifts = [];
 let barShiftsKeys = [];
-
-function displayTestData(val, key) {
-  testdata.push(val)
-}
 
 function displayEmplData(val, key) {
   emplData.push(val)
@@ -49,20 +39,13 @@ export default class Manager extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      fbdbRef: fbdbRef,
-      testdata: testdata,
-      emplData: emplData,
       barShifts: barShifts,
       barShiftsKeys: barShiftsKeys,
+      emplData: emplData,
+      fbdbRef: fbdbRef,
     }
   }
   componentWillMount () {
-    fbdbTest.on("child_added", (snapshot) => {
-      displayTestData(snapshot.val(), snapshot.key);
-      this.setState({
-        testdata: testdata
-      });
-    }).bind(this)
     fbdbEmpl.on("child_added", (snapshot) => {
       displayEmplData(snapshot.val(), snapshot.key);
       this.setState({
@@ -91,10 +74,8 @@ export default class Manager extends React.Component{
   render () {
     return (
       <div className='manager'>
-        <p>Test Data: {this.state.testdata[0]}</p>
         <p>Empl Data from state: {this.state.emplData.join(", ")}</p>
         <p>Bar Shifts from state: {this.state.barShifts.join(", ")}</p>
-
         <BarShifts barShifts={this.state.barShifts}
         barShiftsKeys={this.state.barShiftsKeys}
         emplData={this.state.emplData} />
