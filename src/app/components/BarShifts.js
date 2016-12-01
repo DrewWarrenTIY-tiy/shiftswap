@@ -11,16 +11,19 @@ export default class BarShifts extends React.Component {
   render () {
 
     let barShifts = this.props.barShifts;
+    let barShiftsKeys = this.props.barShiftsKeys;
+    let emplData = this.props.emplData;
 
     return (
       <div className="barShifts">
-         <p>Mon AM: {this.props.barShifts[0]} <EmpList emplData={this.props.emplData} /></p>
-         <p>Tues AM: {this.props.barShifts[1]}</p>
-         <p>Wed AM: {this.props.barShifts[2]}</p>
-         <p>Thurs AM: {this.props.barShifts[3]}</p>
-         <p>Fri AM: {this.props.barShifts[4]}</p>
-         <p>Sat AM: {this.props.barShifts[5]}</p>
-         <p>Sun AM: {this.props.barShifts[6]}</p>
+        {barShifts.map(function(c,i,a) {
+          return (
+            <div className="shift" key={"BarShift" + i}>
+              <span>{barShiftsKeys[i]}: {a[i]}</span>
+              <EmpList emplData={emplData} />
+            </div>
+          )
+        })}
       </div>
     )
   }

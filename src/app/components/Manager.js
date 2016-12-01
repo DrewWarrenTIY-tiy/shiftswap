@@ -24,9 +24,14 @@ var fbdbTest = fbdbRef.child('test');
 var fbdbEmpl = fbdbRef.child('employees');
 var fbdbBarShifts = fbdbRef.child('barshifts');
 
+//KEYS TEST//
+// let barShiftKeys = Object.keys(fbdbTest)
+// console.log(barShiftKeys);
+
 let testdata = [];
 let emplData = [];
 let barShifts = [];
+let barShiftsKeys = [];
 
 function displayTestData(val, key) {
   testdata.push(val)
@@ -44,9 +49,11 @@ export default class Manager extends React.Component{
   constructor(props){
     super(props);
     this.state = {
+      fbdbRef: fbdbRef,
       testdata: testdata,
       emplData: emplData,
       barShifts: barShifts,
+      barShiftsKeys: barShiftsKeys,
     }
   }
   componentWillMount () {
@@ -68,7 +75,18 @@ export default class Manager extends React.Component{
         barShifts: barShifts
       });
     }).bind(this)
-  }
+    const fbdbBarShiftsRef = this.state.fbdbRef.child('barshifts');
+    fbdbBarShiftsRef.on('value', snapshot => {
+      let barShiftsObj = snapshot.val();
+      let barShiftsKeys = Object.keys(barShiftsObj);
+      for (let i = 0; i < barShiftsKeys.length; i++) {
+        barShiftsKeys[i] = barShiftsKeys[i].slice(1);
+      }
+      this.setState({
+        barShiftsKeys: barShiftsKeys
+      });
+    });
+  };
 
   render () {
     return (
@@ -76,9 +94,9 @@ export default class Manager extends React.Component{
         <p>Test Data: {this.state.testdata[0]}</p>
         <p>Empl Data from state: {this.state.emplData.join(", ")}</p>
         <p>Bar Shifts from state: {this.state.barShifts.join(", ")}</p>
-        <p>Drop down menu from EmpList.js</p>
-        <EmpList emplData={this.state.emplData} />
+
         <BarShifts barShifts={this.state.barShifts}
+        barShiftsKeys={this.state.barShiftsKeys}
         emplData={this.state.emplData} />
       </div>
     )
