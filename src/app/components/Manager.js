@@ -78,7 +78,8 @@ export default class Manager extends React.Component{
         <p>Bar Shifts from state: {this.state.barShifts.join(", ")}</p>
         <BarShifts barShifts={this.state.barShifts}
         barShiftsKeys={this.state.barShiftsKeys}
-        emplData={this.state.emplData} />
+        emplData={this.state.emplData}
+        fbdbRef={this.state.fbdbRef} />
       </div>
     )
   }
