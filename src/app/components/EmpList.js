@@ -4,12 +4,11 @@ import React from 'react';
 
 var firebase = require("firebase");
 
-
 export default class EmpList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 'open'
+      value: this.props.value,
     }
 
     this.handleChange = this.handleChange.bind(this);

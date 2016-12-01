@@ -20,7 +20,8 @@ export default class BarShifts extends React.Component {
           return (
             <div className="shift" key={"BarShift" + i}>
               <span>{barShiftsKeys[i]}: {a[i]}</span>
-              <EmpList emplData={emplData} />
+              <EmpList emplData={emplData}
+              value={a[i]} />
             </div>
           )
         })}
