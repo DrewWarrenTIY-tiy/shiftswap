@@ -19,9 +19,9 @@ export default class BarShifts extends React.Component {
       <div className="barShifts">
         {barShifts.map(function(c,i,a) {
           return (
-            <BarShift emplData={emplData}
+            <BarShift key={"BarShift" + i}
+              emplData={emplData}
               fbdbRef={fbdbRef}
-              key={"BarShift" + i}
               shift={barShiftsKeys[i]}
               value={a[i]} />
           )

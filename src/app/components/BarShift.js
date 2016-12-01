@@ -10,9 +10,19 @@ export default class BarShift extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: this.props.value
+      value: this.props.value,
     }
 
+  }
+
+  componentDidUpdate(nextProps, nextState) {
+    console.log("BarShift value(componentDidUpdate): " + this.state.value);
+  }
+
+  onHandleChange (val) {
+    this.setState({
+      value: val
+    });
   }
 
   render () {
@@ -24,8 +34,9 @@ export default class BarShift extends React.Component {
       <div className="shift">
         <span>{this.props.shift}: {this.props.value}</span>
         <EmpList emplData={emplData}
-          value={this.props.value}
-          fbdbRef={fbdbRef} />
+          fbdbRef={fbdbRef}
+          handleChange={this.onHandleChange.bind(this)}
+          value={this.props.value}/>
       </div>
     )
   }
