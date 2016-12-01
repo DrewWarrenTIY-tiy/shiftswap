@@ -20,17 +20,12 @@ firebase.initializeApp(config);
 
 // Get a reference to the database service
 var fbdbRef = firebase.database().ref();
-var fbdbTest = fbdbRef.child('test');
 var fbdbEmpl = fbdbRef.child('employees');
 var fbdbBarShifts = fbdbRef.child('barshifts');
 
-let testdata = [];
 let emplData = [];
 let barShifts = [];
-
-function displayTestData(val, key) {
-  testdata.push(val)
-}
+let barShiftsKeys = [];
 
 function displayEmplData(val, key) {
   emplData.push(val)
@@ -44,18 +39,13 @@ export default class Manager extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      testdata: testdata,
-      emplData: emplData,
       barShifts: barShifts,
+      barShiftsKeys: barShiftsKeys,
+      emplData: emplData,
+      fbdbRef: fbdbRef,
     }
   }
   componentWillMount () {
-    fbdbTest.on("child_added", (snapshot) => {
-      displayTestData(snapshot.val(), snapshot.key);
-      this.setState({
-        testdata: testdata
-      });
-    }).bind(this)
     fbdbEmpl.on("child_added", (snapshot) => {
       displayEmplData(snapshot.val(), snapshot.key);
       this.setState({
@@ -68,17 +58,26 @@ export default class Manager extends React.Component{
         barShifts: barShifts
       });
     }).bind(this)
-  }
+    const fbdbBarShiftsRef = this.state.fbdbRef.child('barshifts');
+    fbdbBarShiftsRef.on('value', snapshot => {
+      let barShiftsObj = snapshot.val();
+      let barShiftsKeys = Object.keys(barShiftsObj);
+      for (let i = 0; i < barShiftsKeys.length; i++) {
+        barShiftsKeys[i] = barShiftsKeys[i].slice(1);
+      }
+      this.setState({
+        barShiftsKeys: barShiftsKeys
+      });
+    });
+  };
 
   render () {
     return (
       <div className='manager'>
-        <p>Test Data: {this.state.testdata[0]}</p>
         <p>Empl Data from state: {this.state.emplData.join(", ")}</p>
         <p>Bar Shifts from state: {this.state.barShifts.join(", ")}</p>
-        <p>Drop down menu from EmpList.js</p>
-        <EmpList emplData={this.state.emplData} />
         <BarShifts barShifts={this.state.barShifts}
+        barShiftsKeys={this.state.barShiftsKeys}
         emplData={this.state.emplData} />
       </div>
     )
