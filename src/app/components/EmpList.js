@@ -8,7 +8,9 @@ var firebase = require("firebase");
 export default class EmpList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: 'open'};
+    this.state = {
+      value: 'open'
+    }
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -18,7 +20,9 @@ export default class EmpList extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({
+      value: event.target.value
+    });
   }
 
   render () {
@@ -29,12 +33,12 @@ export default class EmpList extends React.Component {
       <div className='empList'>
         <select className='dropDown' value={this.state.value} onChange={this.handleChange}>
           <option  value="open">open</option>
-          {emplData.map(function(c,i,a) {
-            return (
-                <option key={"Employee" + i} value={a[i]}>
+          {emplData.map((c,i,a) => {
+            return <option
+               key={"Employee" + i}
+               value={a[i]}>
                 {a[i]}
               </option>
-            )
           })}
           <option value="none">none</option>
         </select>
