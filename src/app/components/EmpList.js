@@ -23,17 +23,13 @@ export default class EmpList extends React.Component {
 
   render () {
 
-    function setEmpl(str) {
-      console.log(str);
-    }
-
     let emplData = this.props.emplData;
 
     return (
       <div className='empList'>
         <select className='dropDown' value={this.state.value} onChange={this.handleChange}>
           <option  value="open">open</option>
-          {this.props.emplData.map(function(c,i,a) {
+          {emplData.map(function(c,i,a) {
             return (
                 <option key={"Employee" + i} value={a[i]}>
                 {a[i]}
