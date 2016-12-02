@@ -22,7 +22,7 @@ export default class BarShifts extends React.Component {
             <BarShift key={"BarShift" + i}
               emplData={emplData}
               fbdbRef={fbdbRef}
-              shift={barShiftsKeys[i]}
+              thisShift={barShiftsKeys[i]}
               value={a[i]} />
           )
         })}

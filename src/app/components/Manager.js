@@ -63,7 +63,7 @@ export default class Manager extends React.Component{
       let barShiftsObj = snapshot.val();
       let barShiftsKeys = Object.keys(barShiftsObj);
       for (let i = 0; i < barShiftsKeys.length; i++) {
-        barShiftsKeys[i] = barShiftsKeys[i].slice(1);
+        barShiftsKeys[i] = barShiftsKeys[i];
       }
       this.setState({
         barShiftsKeys: barShiftsKeys
@@ -75,6 +75,7 @@ export default class Manager extends React.Component{
     return (
       <div className='manager'>
         <p>Empl Data from state: {this.state.emplData.join(", ")}</p>
+        <p>Bar Shifts Keys from state: {this.state.barShiftsKeys.join(", ")}</p>
         <p>Bar Shifts from state: {this.state.barShifts.join(", ")}</p>
         <BarShifts barShifts={this.state.barShifts}
         barShiftsKeys={this.state.barShiftsKeys}

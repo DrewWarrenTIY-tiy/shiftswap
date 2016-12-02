@@ -11,30 +11,31 @@ export default class BarShift extends React.Component {
     super(props);
     this.state = {
       value: this.props.value,
+      thisShift: this.props.thisShift,
     }
 
   }
 
   componentDidUpdate(nextProps, nextState) {
-    console.log("BarShift value(componentDidUpdate): " + this.state.value);
+    console.log(this.props.thisShift + "  value(componentDidUpdate): " + this.state.value);
   }
 
   onHandleChange (val) {
     this.setState({
-      value: val
+      value: val  
     });
+    var updates = {};
+    updates['/barshifts/' + this.props.thisShift] = val;
+    return this.props.fbdbRef.update(updates);
   }
 
   render () {
 
-    let emplData = this.props.emplData;
-    let fbdbRef = this.props.fbdbRef;
-
     return (
       <div className="shift">
-        <span>{this.props.shift}: {this.props.value}</span>
-        <EmpList emplData={emplData}
-          fbdbRef={fbdbRef}
+        <span>{this.props.thisShift}: {this.props.value}</span>
+        <EmpList emplData={this.props.emplData}
+          fbdbRef={this.props.fbdbRef}
           handleChange={this.onHandleChange.bind(this)}
           value={this.props.value}/>
       </div>
