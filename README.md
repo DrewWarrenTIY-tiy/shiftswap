@@ -12,4 +12,4 @@ Drew Warren
 
 License
 
-None
+MIT

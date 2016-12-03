@@ -23,9 +23,9 @@ var fbdbRef = firebase.database().ref();
 var fbdbEmpl = fbdbRef.child('employees');
 var fbdbBarShifts = fbdbRef.child('barshifts');
 
-let emplData = [];
 let barShifts = [];
 let barShiftsKeys = [];
+let emplData = [];
 
 function displayEmplData(val, key) {
   emplData.push(val)
@@ -42,7 +42,7 @@ export default class Manager extends React.Component{
       barShifts: barShifts,
       barShiftsKeys: barShiftsKeys,
       emplData: emplData,
-      fbdbRef: fbdbRef,
+      fbdbRef: fbdbRef
     }
   }
   componentWillMount () {

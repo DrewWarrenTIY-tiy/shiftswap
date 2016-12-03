@@ -8,7 +8,7 @@ export default class EmpList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: this.props.value
+      value: this.props.value,
     }
 
     this.onDropdownChange = this.onDropdownChange.bind(this);
