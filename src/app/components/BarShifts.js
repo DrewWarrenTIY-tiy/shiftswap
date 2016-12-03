@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import EmpList from './EmpList';
+import BarShift from './BarShift';
 
 var firebase = require("firebase");
 
@@ -13,16 +13,17 @@ export default class BarShifts extends React.Component {
     let barShifts = this.props.barShifts;
     let barShiftsKeys = this.props.barShiftsKeys;
     let emplData = this.props.emplData;
+    let fbdbRef = this.props.fbdbRef;
 
     return (
       <div className="barShifts">
         {barShifts.map(function(c,i,a) {
           return (
-            <div className="shift" key={"BarShift" + i}>
-              <span>{barShiftsKeys[i]}: {a[i]}</span>
-              <EmpList emplData={emplData}
+            <BarShift key={"BarShift" + i}
+              emplData={emplData}
+              fbdbRef={fbdbRef}
+              thisShift={barShiftsKeys[i]}
               value={a[i]} />
-            </div>
           )
         })}
       </div>

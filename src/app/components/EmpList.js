@@ -11,26 +11,30 @@ export default class EmpList extends React.Component {
       value: this.props.value,
     }
 
-    this.handleChange = this.handleChange.bind(this);
-  }
+    this.onDropdownChange = this.onDropdownChange.bind(this);
+   }
 
   componentDidUpdate(nextProps, nextState) {
     console.log("dropdown value(componentDidUpdate): " + this.state.value);
   }
 
-  handleChange(event) {
+  onDropdownChange(event) {
     this.setState({
       value: event.target.value
     });
+    this.props.handleChange(event.target.value)
   }
 
   render () {
 
     let emplData = this.props.emplData;
+    let fbdbRef = this.props.fbdbRef;
 
     return (
       <div className='empList'>
-        <select className='dropDown' value={this.state.value} onChange={this.handleChange}>
+        <select className='dropDown'
+          value={this.state.value}
+          onChange={this.onDropdownChange}>
           <option  value="open">open</option>
           {emplData.map((c,i,a) => {
             return <option
