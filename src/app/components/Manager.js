@@ -76,7 +76,7 @@ export default class Manager extends React.Component{
       <div className='manager'>
         <p>Empl Data from state: {this.state.emplData.join(", ")}</p>
         <p>Bar Shifts Keys from state: {this.state.barShiftsKeys.join(", ")}</p>
-        <p>Bar Shifts from state: {this.state.barShifts.join(", ")}</p>
+        <p>Bar Shifts Values from state: {this.state.barShifts.join(", ")}</p>
         <BarShifts barShifts={this.state.barShifts}
         barShiftsKeys={this.state.barShiftsKeys}
         emplData={this.state.emplData}
