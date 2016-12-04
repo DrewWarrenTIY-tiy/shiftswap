@@ -3,6 +3,19 @@ body {
 }
 
 img {
-  height: 200px;
+  display: block;
+  margin: auto;
+  height: 150px;
   width: auto;
+}
+
+.shift {
+
+}
+
+.barShifts {
+  display: flex;
+  flex-flow: column wrap;
+  width: 900px;
+  height: 300px;
 }

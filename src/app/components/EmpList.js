@@ -35,7 +35,7 @@ export default class EmpList extends React.Component {
         <select className='dropDown'
           value={this.state.value}
           onChange={this.onDropdownChange}>
-          <option  value="open">open</option>
+          <option  value=" - "> - </option>
           {emplData.map((c,i,a) => {
             return <option
                key={"Employee" + i}
@@ -43,7 +43,6 @@ export default class EmpList extends React.Component {
                 {a[i]}
               </option>
           })}
-          <option value="none">none</option>
         </select>
       </div>
     )

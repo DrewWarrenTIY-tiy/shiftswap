@@ -34,11 +34,12 @@ export default class BarShift extends React.Component {
 
     return (
       <div className="shift">
-        <span>{this.props.thisShift.slice(1)}: {this.state.value}</span>
+        <span>{this.props.thisShift.slice(2)}: <br /> {this.state.value}</span>
         <EmpList emplData={this.props.emplData}
           fbdbRef={this.props.fbdbRef}
           handleChange={this.onHandleChange.bind(this)}
           value={this.props.value}/>
+        <br />
       </div>
     )
   }
