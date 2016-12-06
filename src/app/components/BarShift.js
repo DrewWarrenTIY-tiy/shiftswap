@@ -17,10 +17,6 @@ export default class BarShift extends React.Component {
 
   }
 
-  componentDidUpdate(nextProps, nextState) {
-    console.log(this.props.thisShift + "  value(componentDidUpdate): " + this.state.value);
-  }
-
   onHandleChange (val) {
     this.setState({
       value: val
@@ -32,9 +28,11 @@ export default class BarShift extends React.Component {
 
   render () {
 
+    let slicedShifts = this.props.thisShift;
+
     return (
       <div className="shift">
-        <span>{this.props.thisShift.slice(2)}: <br /> {this.state.value}</span>
+        <span>{slicedShifts}: <br /> {this.state.value}</span>
         <EmpList emplData={this.props.emplData}
           fbdbRef={this.props.fbdbRef}
           handleChange={this.onHandleChange.bind(this)}

@@ -16,7 +16,6 @@ export default class App extends React.Component {
       <Router>
         <div className="container">
           <Header />
-          <Match pattern='/manager' component={Manager}/>
           <Match exactly pattern='/' component={Manager}/>
           <Match pattern='/bar' component={Bar}/>
         </div>

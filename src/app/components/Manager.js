@@ -71,10 +71,6 @@ export default class Manager extends React.Component{
     });
   };
 
-  componentWillUnmount() {
-    console.log("UNMOUNTED");
-  }
-
   render () {
     return (
       <div className='manager'>

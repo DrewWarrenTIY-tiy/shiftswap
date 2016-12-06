@@ -10,7 +10,7 @@ export default class Nav extends React.Component {
     return(
       <nav>
         <ul className="navBar">
-          <li><Link to='/manager'>Manager</Link></li>
+          <li><Link to='/'>Manager</Link></li>
           <li><Link to='/bar'>Bar</Link></li>
         </ul>
       </nav>

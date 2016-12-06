@@ -14,10 +14,6 @@ export default class EmpList extends React.Component {
     this.onDropdownChange = this.onDropdownChange.bind(this);
    }
 
-  componentDidUpdate(nextProps, nextState) {
-    console.log("dropdown value(componentDidUpdate): " + this.state.value);
-  }
-
   onDropdownChange(event) {
     this.setState({
       value: event.target.value
