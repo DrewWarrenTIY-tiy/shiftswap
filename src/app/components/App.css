@@ -28,5 +28,5 @@ img {
   display: flex;
   flex-flow: column wrap;
   width: 900px;
-  height: 250px;
+  height: 150px;
 }

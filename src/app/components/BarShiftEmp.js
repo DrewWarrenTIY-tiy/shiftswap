@@ -4,7 +4,7 @@ import React from 'react';
 
 var firebase = require("firebase");
 
-export default class BarShift extends React.Component {
+export default class BarShiftEmp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -6,7 +6,7 @@ import BarShiftEmp from './BarShiftEmp';
 
 var firebase = require("firebase");
 
-export default class BarShifts extends React.Component {
+export default class BarShiftsEmp extends React.Component {
 
   render () {
 

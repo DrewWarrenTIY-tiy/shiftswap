@@ -2,11 +2,28 @@
 
 import React from 'react';
 
-export default class Bar extends React.Component {
+import BarShiftsEmp from './BarShiftsEmp';
+import EmpList from './EmpList';
+
+import manager from './Manager.css';
+
+var firebase = require("firebase");
+
+export default class Bar extends React.Component{
+
   render () {
+
+    let barShifts = this.props.barShifts;
+    let barShiftsKeys = this.props.barShiftsKeys;
+    let emplData = this.props.emplData;
+    let fbdbRef = this.props.fbdbRef;
+
     return (
-      <div className="bar">
-        <h1>This is the bar page.</h1>
+      <div className='manager'>
+        <BarShiftsEmp barShifts={barShifts}
+        barShiftsKeys={barShiftsKeys}
+        emplData={emplData}
+        fbdbRef={fbdbRef} />
       </div>
     )
   }

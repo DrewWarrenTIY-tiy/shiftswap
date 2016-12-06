@@ -87,7 +87,11 @@ export default class App extends React.Component {
             emplData={this.state.emplData}
             fbdbRef={this.state.fbdbRef} {...defaultProps} />
           }/>
-          <Match pattern='/bar' component={Bar}/>
+        <Match pattern="/bar" render={
+            (defaultProps) => <Bar barShifts={this.state.barShifts}
+            barShiftsKeys={this.state.barShiftsKeys}
+            fbdbRef={this.state.fbdbRef} {...defaultProps} />
+          }/>
         </div>
       </Router>
     )
