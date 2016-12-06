@@ -31,10 +31,6 @@ function displayEmplData(val, key) {
   emplData.push(val)
 }
 
-function displayBarShifts(val, key) {
-  barShifts.push(val)
-}
-
 export default class Manager extends React.Component{
   constructor(props){
     super(props);
@@ -52,13 +48,8 @@ export default class Manager extends React.Component{
         emplData: emplData
       });
     }).bind(this)
-    fbdbBarShifts.on("child_added", (snapshot) => {
-      displayBarShifts(snapshot.val(), snapshot.key);
-      this.setState({
-        barShifts: barShifts
-      });
-    }).bind(this)
     const fbdbBarShiftsRef = this.state.fbdbRef.child('barshifts');
+    //POPULATES OBJECT KEYS ARRAY
     fbdbBarShiftsRef.on('value', snapshot => {
       let barShiftsObj = snapshot.val();
       let barShiftsKeys = Object.keys(barShiftsObj);
@@ -67,6 +58,17 @@ export default class Manager extends React.Component{
       }
       this.setState({
         barShiftsKeys: barShiftsKeys
+      });
+    });
+    //POPULATES OBJECT VALS ARRAY
+    fbdbBarShiftsRef.on('value', snapshot => {
+      let barShiftsObj = snapshot.val();
+      let barShifts = Object.values(barShiftsObj);
+      for (let i = 0; i < barShifts.length; i++) {
+        barShifts[i] = barShifts[i];
+      }
+      this.setState({
+        barShifts: barShifts
       });
     });
   };

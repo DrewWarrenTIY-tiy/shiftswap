@@ -28,7 +28,7 @@ export default class BarShift extends React.Component {
 
   render () {
 
-    let slicedShifts = this.props.thisShift;
+    let slicedShifts = this.props.thisShift.slice(2);
 
     return (
       <div className="shift">
