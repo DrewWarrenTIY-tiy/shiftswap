@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import { Link } from 'react-router';
 
 import navBar from './Nav.css'
 
@@ -9,9 +10,8 @@ export default class Nav extends React.Component {
     return(
       <nav>
         <ul className="navBar">
-          <li><a href='#'>Home</a></li>
-          <li><a href='#'>About</a></li>
-          <li><a href='#'>Contact</a></li>
+          <li><Link to='/manager'>Manager</Link></li>
+          <li><Link to='/bar'>Bar</Link></li>
         </ul>
       </nav>
     );
