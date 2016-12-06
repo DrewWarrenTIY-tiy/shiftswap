@@ -9,6 +9,16 @@ import manager from './Manager.css';
 
 var firebase = require("firebase");
 
+// Set the configuration for your app
+var config = {
+  apiKey: "AIzaSyDayn7zcog-05rzJNH6KeQyHTyttuzUT_8",
+  authDomain: "shiftswapforsues.firebaseapp.com",
+  databaseURL: "https://shiftswapforsues.firebaseio.com",
+  storageBucket: "shiftswapforsues.appspot.com"
+};
+firebase.initializeApp(config);
+
+// Get a reference to the database service
 var fbdbRef = firebase.database().ref();
 var fbdbEmpl = fbdbRef.child('employees');
 var fbdbBarShifts = fbdbRef.child('barshifts');
