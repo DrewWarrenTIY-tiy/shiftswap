@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Link, Match, Miss } from 'react-router';
 
 import Bar from './Bar';
 import Header from './Header';
+import Home from './Home';
 import Manager from './Manager';
 
 import container from './App.css';
@@ -87,11 +88,13 @@ export default class App extends React.Component {
             emplData={this.state.emplData}
             fbdbRef={this.state.fbdbRef} {...defaultProps} />
           }/>
-        <Match pattern="/bar" render={
+          <Match pattern="/bar" render={
             (defaultProps) => <Bar barShifts={this.state.barShifts}
             barShiftsKeys={this.state.barShiftsKeys}
             fbdbRef={this.state.fbdbRef} {...defaultProps} />
           }/>
+        <Match pattern="/home" component={Home} />
+        <Match pattern="/home?" component={Home} />
         </div>
       </Router>
     )
