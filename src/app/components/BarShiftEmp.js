@@ -15,15 +15,6 @@ export default class BarShiftEmp extends React.Component {
 
   }
 
-  onHandleChange (val) {
-    this.setState({
-      value: val
-    });
-    var updates = {};
-    updates['/barshifts/' + this.props.thisShift] = val;
-    return this.state.fbdbRef.update(updates);
-  }
-
   render () {
 
     let slicedShifts = this.props.thisShift.slice(2);
