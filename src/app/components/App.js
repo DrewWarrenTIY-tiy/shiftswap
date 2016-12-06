@@ -1,7 +1,10 @@
 "use strict";
 
 import React from 'react';
+import { BrowserRouter as Router, Link, Match, Miss } from 'react-router';
 
+import Bar from './Bar';
+import Header from './Header';
 import Manager from './Manager';
 
 import container from './App.css';
@@ -10,9 +13,13 @@ import container from './App.css';
 export default class App extends React.Component {
   render () {
     return (
-      <div className='container'>
-        <Manager/>
-      </div>
+      <Router>
+        <div className="container">
+          <Header />
+          <Match exactly pattern='/' component={Manager}/>
+          <Match pattern='/bar' component={Bar}/>
+        </div>
+      </Router>
     );
   }
 }

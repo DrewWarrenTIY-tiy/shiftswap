@@ -31,10 +31,6 @@ function displayEmplData(val, key) {
   emplData.push(val)
 }
 
-function displayBarShifts(val, key) {
-  barShifts.push(val)
-}
-
 export default class Manager extends React.Component{
   constructor(props){
     super(props);
@@ -52,13 +48,8 @@ export default class Manager extends React.Component{
         emplData: emplData
       });
     }).bind(this)
-    fbdbBarShifts.on("child_added", (snapshot) => {
-      displayBarShifts(snapshot.val(), snapshot.key);
-      this.setState({
-        barShifts: barShifts
-      });
-    }).bind(this)
     const fbdbBarShiftsRef = this.state.fbdbRef.child('barshifts');
+    //POPULATES OBJECT KEYS ARRAY
     fbdbBarShiftsRef.on('value', snapshot => {
       let barShiftsObj = snapshot.val();
       let barShiftsKeys = Object.keys(barShiftsObj);
@@ -69,14 +60,22 @@ export default class Manager extends React.Component{
         barShiftsKeys: barShiftsKeys
       });
     });
+    //POPULATES OBJECT VALS ARRAY
+    fbdbBarShiftsRef.on('value', snapshot => {
+      let barShiftsObj = snapshot.val();
+      let barShifts = Object.values(barShiftsObj);
+      for (let i = 0; i < barShifts.length; i++) {
+        barShifts[i] = barShifts[i];
+      }
+      this.setState({
+        barShifts: barShifts
+      });
+    });
   };
 
   render () {
     return (
       <div className='manager'>
-        <p>Empl Data from state: {this.state.emplData.join(", ")}</p>
-        <p>Bar Shifts Keys from state: {this.state.barShiftsKeys.join(", ")}</p>
-        <p>Bar Shifts Values from state: {this.state.barShifts.join(", ")}</p>
         <BarShifts barShifts={this.state.barShifts}
         barShiftsKeys={this.state.barShiftsKeys}
         emplData={this.state.emplData}

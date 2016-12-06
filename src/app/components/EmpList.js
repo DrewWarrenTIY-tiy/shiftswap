@@ -14,10 +14,6 @@ export default class EmpList extends React.Component {
     this.onDropdownChange = this.onDropdownChange.bind(this);
    }
 
-  componentDidUpdate(nextProps, nextState) {
-    console.log("dropdown value(componentDidUpdate): " + this.state.value);
-  }
-
   onDropdownChange(event) {
     this.setState({
       value: event.target.value
@@ -35,7 +31,7 @@ export default class EmpList extends React.Component {
         <select className='dropDown'
           value={this.state.value}
           onChange={this.onDropdownChange}>
-          <option  value="open">open</option>
+          <option  value=" - "> - </option>
           {emplData.map((c,i,a) => {
             return <option
                key={"Employee" + i}
@@ -43,7 +39,6 @@ export default class EmpList extends React.Component {
                 {a[i]}
               </option>
           })}
-          <option value="none">none</option>
         </select>
       </div>
     )
