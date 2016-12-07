@@ -38,6 +38,7 @@ export default class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      auth: false,
       barShifts: barShifts,
       barShiftsKeys: barShiftsKeys,
       emplData: emplData,
@@ -75,6 +76,7 @@ export default class App extends React.Component {
         barShifts: barShifts
       });
     });
+    console.log("this.state.auth: " + this.state.auth);
   };
 
   render () {
@@ -82,7 +84,9 @@ export default class App extends React.Component {
       <Router>
         <div className='container'>
           <Header />
-          <Match exactly pattern="/" component={Home} />
+          <Match exactly pattern="/" render={
+              (defaultProps) => <Home auth={this.state.auth} {...defaultProps} />
+            } />
           <Match pattern="/manager" render={
             (defaultProps) => <Manager barShifts={this.state.barShifts}
             barShiftsKeys={this.state.barShiftsKeys}
