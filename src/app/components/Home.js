@@ -5,11 +5,23 @@ import React from 'react';
 var firebase = require("firebase");
 
 export default class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      auth: this.props.auth,
+    }
+  }
+
+  onAuthChange(bool) {
+    this.setState({
+      auth: bool
+    });
+    this.props.handleAuthChange(bool)
+  }
+
   render () {
 
-    const btnLogin = document.getElementById('btnLogin');
-    const btnSignUp = document.getElementById('btnSignUp');
-    const btnLogout = document.getElementById('btnLogout');
+    console.log("this.state.auth of Home.js: " + this.state.auth);
 
     function loginEvent(e) {
       e.preventDefault();
@@ -26,7 +38,8 @@ export default class Home extends React.Component {
     }
 
     function logoutEvent() {
-      firebase.auth().signOut();;
+      firebase.auth().signOut();
+      //onAuthChange(false);
     }
 
     firebase.auth().onAuthStateChanged(firebaseUser => {
@@ -39,6 +52,7 @@ export default class Home extends React.Component {
         document.getElementById('btnLogout').classList.add('hide');
         document.getElementById('btnLogin').classList.remove('hide');
       }
+      console.log("onAuthStateChanged auth: " + this.state.auth);
     });
 
     return (

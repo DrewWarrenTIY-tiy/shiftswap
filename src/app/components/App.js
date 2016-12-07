@@ -76,16 +76,32 @@ export default class App extends React.Component {
         barShifts: barShifts
       });
     });
-    console.log("this.state.auth: " + this.state.auth);
+    console.log("this.state.auth of App.js: " + this.state.auth);
+
+    var user = firebase.auth().currentUser;
+
+    if(user) {
+      console.log(user);
+    } else {
+      console.log('no user');
+    }
   };
 
+  handleAuthChange (bool) {
+    this.setState({
+      auth: bool
+    })
+  }
+
   render () {
+
     return (
       <Router>
         <div className='container'>
           <Header />
           <Match exactly pattern="/" render={
-              (defaultProps) => <Home auth={this.state.auth} {...defaultProps} />
+              (defaultProps) => <Home auth={this.state.auth}
+              handleAuthChange={this.handleAuthChange.bind(this)} {...defaultProps} />
             } />
           <Match pattern="/manager" render={
             (defaultProps) => <Manager barShifts={this.state.barShifts}

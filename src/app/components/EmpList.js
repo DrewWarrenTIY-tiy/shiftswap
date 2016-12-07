@@ -10,7 +10,6 @@ export default class EmpList extends React.Component {
     this.state = {
       value: this.props.value,
     }
-
     this.onDropdownChange = this.onDropdownChange.bind(this);
    }
 
