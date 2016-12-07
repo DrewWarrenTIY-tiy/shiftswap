@@ -33,9 +33,11 @@ export default class Home extends React.Component {
       if(firebaseUser) {
         console.log(firebaseUser);
         document.getElementById('btnLogout').classList.remove('hide');
+        document.getElementById('btnLogin').classList.add('hide');
       } else {
         console.log('not logged in');
         document.getElementById('btnLogout').classList.add('hide');
+        document.getElementById('btnLogin').classList.remove('hide');
       }
     });
 
@@ -52,7 +54,7 @@ export default class Home extends React.Component {
         <button id="btnSignUp" className="btn btn-secondary">
           Sign Up
         </button>
-        <button onClick={logoutEvent} id="btnLogout" className="btn btn-action hide">
+        <button onClick={logoutEvent} id="btnLogout" className="btn btn-action hide btnLogout">
           Log Out
         </button>
       </div>

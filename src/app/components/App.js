@@ -94,13 +94,8 @@ export default class App extends React.Component {
             fbdbRef={this.state.fbdbRef} {...defaultProps} />
           }/>
         <Match pattern="/home" component={Home} />
-        <Match pattern="/home?" component={Home} />
         </div>
       </Router>
     )
   }
 }
-
-
-
-      // <Match exactly pattern ='/' component={Manager}/>
