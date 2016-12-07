@@ -82,7 +82,8 @@ export default class App extends React.Component {
       <Router>
         <div className='container'>
           <Header />
-          <Match exactly pattern="/" render={
+          <Match exactly pattern="/" component={Home} />
+          <Match pattern="/manager" render={
             (defaultProps) => <Manager barShifts={this.state.barShifts}
             barShiftsKeys={this.state.barShiftsKeys}
             emplData={this.state.emplData}
@@ -93,7 +94,6 @@ export default class App extends React.Component {
             barShiftsKeys={this.state.barShiftsKeys}
             fbdbRef={this.state.fbdbRef} {...defaultProps} />
           }/>
-        <Match pattern="/home" component={Home} />
         </div>
       </Router>
     )
