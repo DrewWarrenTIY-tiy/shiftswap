@@ -44,9 +44,6 @@ export default class Home extends React.Component {
         email: '',
         password: ''
       })
-      document.getElementById("email") = "";
-      document.getElementById("password") = "";
-
     }
 
   render () {
