@@ -11,6 +11,10 @@ var firebase = require("firebase");
 
 export default class Manager extends React.Component{
 
+  componentDidMount () {
+    console.log("Manager auth: " + this.props.auth);
+  }
+
   render () {
 
     let barShifts = this.props.barShifts;

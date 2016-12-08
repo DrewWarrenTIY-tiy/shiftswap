@@ -1,62 +1,88 @@
 'use strict';
 
 import React from 'react';
+import classnames from 'classnames';
 
 var firebase = require("firebase");
 
 export default class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      auth: this.props.auth,
+      email: '',
+      password: '',
+    }
+  }
+
+  login(e) {
+    e.preventDefault();
+    //Get email and pass
+    const { email, password } = this.state
+    console.log("email: " + email + " pass: " + password);
+
+    //Get Firebase Auth
+    const auth = firebase.auth();
+    //Sign in via Firebase
+    auth.signInWithEmailAndPassword(email, password)
+      .then( () => {
+        this.resetForm()
+        window.location.reload();
+      })
+      .catch( e => {
+        console.log(e.message)
+        this.resetForm()
+      });
+      // The rest will be handled by the firebase listener in the App.js
+    }
+    logout() {
+      firebase.auth().signOut();
+      window.location.reload();
+    }
+    resetForm () {
+      this.setState({
+        email: '',
+        password: ''
+      })
+    }
+
   render () {
-
-    const btnLogin = document.getElementById('btnLogin');
-    const btnSignUp = document.getElementById('btnSignUp');
-    const btnLogout = document.getElementById('btnLogout');
-
-    function loginEvent(e) {
-      e.preventDefault();
-      //Get email and pass
-       let email = document.getElementById('txtEmail').value;
-       let pass = document.getElementById('txtPassword').value;
-      const auth = firebase.auth();
-      //Sign in
-      const promise = auth.signInWithEmailAndPassword(email, pass);
-      promise.catch( e => console.log(e.message));
-      console.log("email: " + email + " pass: " + pass);
-      document.getElementById('txtEmail').value = '';
-      document.getElementById('txtPassword').value = '';
-    }
-
-    function logoutEvent() {
-      firebase.auth().signOut();;
-    }
-
-    firebase.auth().onAuthStateChanged(firebaseUser => {
-      if(firebaseUser) {
-        console.log(firebaseUser);
-        document.getElementById('btnLogout').classList.remove('hide');
-        document.getElementById('btnLogin').classList.add('hide');
-      } else {
-        console.log('not logged in');
-        document.getElementById('btnLogout').classList.add('hide');
-        document.getElementById('btnLogin').classList.remove('hide');
-      }
-    });
+    // This render function is awesome now, because it only has one job which is the UI
+    const { auth } = this.props;
+    console.log("this.state.auth of Home.js: " + this.state.auth);
 
     return (
       <div className="home">
         <h1>Home</h1>
-        <form onSubmit={loginEvent}>
-          <input id="txtEmail" type="email" placeholder="Email"/>
-          <input id="txtPassword" type="password" placeholder="Password"/>
-          <button onClick={loginEvent} id="btnLogin" className="btn btn-action">
+        <form onSubmit={this.login.bind(this)}>
+          <input
+            type="email"
+            placeholder="Email"
+            onChange={e => this.setState({email: e.target.value})}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            onChange={e => this.setState({password: e.target.value})}
+          />
+          <button
+            type='submit'
+            className={classnames("btn btn-action", {
+              hide: auth
+            })}
+          >
             Log In
           </button>
         </form>
-        <button id="btnSignUp" className="btn btn-secondary">
-          Sign Up
-        </button>
-        <button onClick={logoutEvent} id="btnLogout" className="btn btn-action hide btnLogout">
-          Log Out
-        </button>
+        {/* <button className="btn btn-secondary">Sign Up</button> */}
+       <button
+         onClick={this.logout.bind(this)}
+         className={classnames("btn btn-action btnLogout", {
+           hide: !auth
+         })}
+       >
+         Log Out
+       </button>
       </div>
     )
   }

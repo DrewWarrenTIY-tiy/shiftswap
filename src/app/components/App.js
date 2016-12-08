@@ -38,6 +38,7 @@ export default class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      auth: false,
       barShifts: barShifts,
       barShiftsKeys: barShiftsKeys,
       emplData: emplData,
@@ -45,7 +46,7 @@ export default class App extends React.Component {
     }
   }
 
-  componentWillMount () {
+  componentDidMount () {
     fbdbEmpl.on("child_added", (snapshot) => {
       displayEmplData(snapshot.val(), snapshot.key);
       this.setState({
@@ -75,25 +76,66 @@ export default class App extends React.Component {
         barShifts: barShifts
       });
     });
-  };
+    // listen for firebase auth events at the top level, much easier to react to regardless of what route the user is in
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+      console.log("onAuthStateChanged auth: " + this.state.auth);
+      if (firebaseUser) {
+        console.log('logged in');
+        console.log(firebaseUser);
+        this.handleAuthChange(true)
+      } else {
+        console.log('not logged in');
+        this.handleAuthChange(false)
+      }
+    });
+  }
+
+  handleAuthChange (auth) {
+    this.setState({ auth })
+  }
 
   render () {
+
+    console.log("this.state.auth of App.js: " + this.state.auth);
+
     return (
       <Router>
         <div className='container'>
-          <Header />
-          <Match exactly pattern="/" component={Home} />
-          <Match pattern="/manager" render={
-            (defaultProps) => <Manager barShifts={this.state.barShifts}
-            barShiftsKeys={this.state.barShiftsKeys}
-            emplData={this.state.emplData}
-            fbdbRef={this.state.fbdbRef} {...defaultProps} />
-          }/>
-          <Match pattern="/bar" render={
-            (defaultProps) => <Bar barShifts={this.state.barShifts}
-            barShiftsKeys={this.state.barShiftsKeys}
-            fbdbRef={this.state.fbdbRef} {...defaultProps} />
-          }/>
+          <Header auth={this.state.auth} />
+          <Match
+            exactly
+            pattern="/"
+            render={defaultProps => (
+              <Home
+                auth={this.state.auth}
+                handleAuthChange={this.handleAuthChange}
+                {...defaultProps}
+              />
+            )}
+          />
+          <Match
+            pattern="/manager"
+            render={defaultProps => (
+              <Manager
+                auth={this.state.auth}
+                barShifts={this.state.barShifts}
+                barShiftsKeys={this.state.barShiftsKeys}
+                emplData={this.state.emplData}
+                fbdbRef={this.state.fbdbRef} {...defaultProps}
+              />
+            )}
+          />
+          <Match
+            pattern="/bar"
+            render={defaultProps => (
+              <Bar
+                auth={this.state.auth}
+                barShifts={this.state.barShifts}
+                barShiftsKeys={this.state.barShiftsKeys}
+                fbdbRef={this.state.fbdbRef} {...defaultProps}
+              />
+            )}
+          />
         </div>
       </Router>
     )
