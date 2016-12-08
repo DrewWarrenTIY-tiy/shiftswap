@@ -76,21 +76,22 @@ export default class App extends React.Component {
         barShifts: barShifts
       });
     });
-    console.log("this.state.auth of App.js: " + this.state.auth);
+    // listen for firebase auth events at the top level, much easier to react to regardless of what route the user is in
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+      console.log("onAuthStateChanged auth: " + this.state.auth);
+      if (firebaseUser) {
+        console.log('logged in');
+        console.log(firebaseUser);
+        this.handleAuthChange(true)
+      } else {
+        console.log('not logged in');
+        this.handleAuthChange(false)
+      }
+    });
+  }
 
-    var user = firebase.auth().currentUser;
-
-    if(user) {
-      console.log(user);
-    } else {
-      console.log('no user');
-    }
-  };
-
-  handleAuthChange (bool) {
-    this.setState({
-      auth: bool
-    })
+  handleAuthChange (auth) {
+    this.setState({ auth })
   }
 
   render () {
@@ -99,21 +100,38 @@ export default class App extends React.Component {
       <Router>
         <div className='container'>
           <Header />
-          <Match exactly pattern="/" render={
-              (defaultProps) => <Home auth={this.state.auth}
-              handleAuthChange={this.handleAuthChange.bind(this)} {...defaultProps} />
-            } />
-          <Match pattern="/manager" render={
-            (defaultProps) => <Manager barShifts={this.state.barShifts}
-            barShiftsKeys={this.state.barShiftsKeys}
-            emplData={this.state.emplData}
-            fbdbRef={this.state.fbdbRef} {...defaultProps} />
-          }/>
-          <Match pattern="/bar" render={
-            (defaultProps) => <Bar barShifts={this.state.barShifts}
-            barShiftsKeys={this.state.barShiftsKeys}
-            fbdbRef={this.state.fbdbRef} {...defaultProps} />
-          }/>
+          <Match
+            exactly
+            pattern="/"
+            render={defaultProps => (
+              <Home
+                auth={this.state.auth}
+                handleAuthChange={this.handleAuthChange}
+                {...defaultProps}
+              />
+            )}
+          />
+          <Match
+            pattern="/manager"
+            render={defaultProps => (
+              <Manager
+                barShifts={this.state.barShifts}
+                barShiftsKeys={this.state.barShiftsKeys}
+                emplData={this.state.emplData}
+                fbdbRef={this.state.fbdbRef} {...defaultProps}
+              />
+            )}
+          />
+          <Match
+            pattern="/bar"
+            render={defaultProps => (
+              <Bar
+                barShifts={this.state.barShifts}
+                barShiftsKeys={this.state.barShiftsKeys}
+                fbdbRef={this.state.fbdbRef} {...defaultProps}
+              />
+            )}
+          />
         </div>
       </Router>
     )
