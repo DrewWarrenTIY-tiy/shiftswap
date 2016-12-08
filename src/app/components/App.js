@@ -46,7 +46,7 @@ export default class App extends React.Component {
     }
   }
 
-  componentWillMount () {
+  componentDidMount () {
     fbdbEmpl.on("child_added", (snapshot) => {
       displayEmplData(snapshot.val(), snapshot.key);
       this.setState({
@@ -96,10 +96,12 @@ export default class App extends React.Component {
 
   render () {
 
+    console.log("this.state.auth of App.js: " + this.state.auth);
+
     return (
       <Router>
         <div className='container'>
-          <Header />
+          <Header auth={this.state.auth} />
           <Match
             exactly
             pattern="/"
@@ -115,6 +117,7 @@ export default class App extends React.Component {
             pattern="/manager"
             render={defaultProps => (
               <Manager
+                auth={this.state.auth}
                 barShifts={this.state.barShifts}
                 barShiftsKeys={this.state.barShiftsKeys}
                 emplData={this.state.emplData}
@@ -126,6 +129,7 @@ export default class App extends React.Component {
             pattern="/bar"
             render={defaultProps => (
               <Bar
+                auth={this.state.auth}
                 barShifts={this.state.barShifts}
                 barShiftsKeys={this.state.barShiftsKeys}
                 fbdbRef={this.state.fbdbRef} {...defaultProps}

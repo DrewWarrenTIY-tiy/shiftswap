@@ -11,7 +11,7 @@ export default class Header extends React.Component {
     return(
       <header>
         <img className="logo" src="./app/img/ShiftSwapIcon.png" alt="ss-logo"/>
-        <Nav />
+        <Nav auth={this.props.auth} />
       </header>
     );
   }

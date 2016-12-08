@@ -25,7 +25,10 @@ export default class Home extends React.Component {
     const auth = firebase.auth();
     //Sign in via Firebase
     auth.signInWithEmailAndPassword(email, password)
-      .then(() => this.resetForm())
+      .then( () => {
+        this.resetForm()
+        window.location.reload();
+      })
       .catch( e => {
         console.log(e.message)
         this.resetForm()
@@ -34,6 +37,7 @@ export default class Home extends React.Component {
     }
     logout() {
       firebase.auth().signOut();
+      window.location.reload();
     }
     resetForm () {
       this.setState({
@@ -50,7 +54,7 @@ export default class Home extends React.Component {
     return (
       <div className="home">
         <h1>Home</h1>
-        <form onSubmit={this.login}>
+        <form onSubmit={this.login.bind(this)}>
           <input
             type="email"
             placeholder="Email"
@@ -72,7 +76,7 @@ export default class Home extends React.Component {
         </form>
         {/* <button className="btn btn-secondary">Sign Up</button> */}
        <button
-         onClick={this.logout}
+         onClick={this.logout.bind(this)}
          className={classnames("btn btn-action btnLogout", {
            hide: !auth
          })}
