@@ -45,6 +45,7 @@ export default class App extends React.Component {
       barShiftsKeys: barShiftsKeys,
       emplData: emplData,
       fbdbRef: fbdbRef,
+      name: "",
       uid: "",
     }
   }
@@ -91,6 +92,7 @@ export default class App extends React.Component {
           const user = snapshot.val();
           this.handleAdmin(user.isAdmin)
           this.handleUID(user.uid)
+          this.handleName(user.name)
 
           // auth: false,
           // barShifts: barShifts,
@@ -107,14 +109,12 @@ export default class App extends React.Component {
     });
   }
 
-  componentDidMount () {
-    console.log("componentDidMount: ", this.state.uid, this.state.admin);
+  handleAdmin (admin) {
+    this.setState({ admin })
   }
 
-  handleAdmin (admin) {
-    console.log("handleAdmin param: ", admin);
-    this.setState({ admin })
-    console.log("this.state.admin: ", this.state.admin);
+  handleName (name) {
+    this.setState({ name })
   }
 
   handleAuthChange (auth) {
@@ -122,9 +122,7 @@ export default class App extends React.Component {
   }
 
   handleUID (uid) {
-    console.log("handleUID param: " + uid);
     this.setState({ uid })
-    console.log("this.state.uid: " + this.state.uid);
   }
 
   render () {
