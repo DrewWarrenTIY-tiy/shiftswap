@@ -23,8 +23,9 @@ firebase.initializeApp(config);
 
 // Get a reference to the database service
 var fbdbRef = firebase.database().ref();
-var fbdbEmpl = fbdbRef.child('employees');
 var fbdbBarShifts = fbdbRef.child('barshifts');
+var fbdbEmpl = fbdbRef.child('employees');
+var fbdbUsers = fbdbRef.child('empTest');
 
 let barShifts = [];
 let barShiftsKeys = [];
@@ -38,15 +39,18 @@ export default class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      admin: false,
       auth: false,
       barShifts: barShifts,
       barShiftsKeys: barShiftsKeys,
       emplData: emplData,
-      fbdbRef: fbdbRef
+      fbdbRef: fbdbRef,
+      name: "",
+      uid: "",
     }
   }
 
-  componentDidMount () {
+  componentWillMount () {
     fbdbEmpl.on("child_added", (snapshot) => {
       displayEmplData(snapshot.val(), snapshot.key);
       this.setState({
@@ -78,11 +82,26 @@ export default class App extends React.Component {
     });
     // listen for firebase auth events at the top level, much easier to react to regardless of what route the user is in
     firebase.auth().onAuthStateChanged(firebaseUser => {
-      console.log("onAuthStateChanged auth: " + this.state.auth);
       if (firebaseUser) {
         console.log('logged in');
         console.log(firebaseUser);
         this.handleAuthChange(true)
+        // this.handleUID(firebaseUser.uid)
+        let empTest = this.state.fbdbRef.child('empTest').child(firebaseUser.uid).on('value', (snapshot) => {
+          // console.log((snapshot.val()).isAdmin);
+          const user = snapshot.val();
+          this.handleAdmin(user.isAdmin)
+          this.handleUID(user.uid)
+          this.handleName(user.name)
+
+          // auth: false,
+          // barShifts: barShifts,
+          // barShiftsKeys: barShiftsKeys,
+          // emplData: emplData,
+          // fbdbRef: fbdbRef,
+          // uid: "",
+          // handleAdmin(snapshot.val()));
+        });
       } else {
         console.log('not logged in');
         this.handleAuthChange(false)
@@ -90,18 +109,31 @@ export default class App extends React.Component {
     });
   }
 
+  handleAdmin (admin) {
+    this.setState({ admin })
+  }
+
+  handleName (name) {
+    this.setState({ name })
+  }
+
   handleAuthChange (auth) {
     this.setState({ auth })
   }
 
-  render () {
+  handleUID (uid) {
+    this.setState({ uid })
+  }
 
-    console.log("this.state.auth of App.js: " + this.state.auth);
+  render () {
 
     return (
       <Router>
         <div className='container'>
-          <Header auth={this.state.auth} />
+          <Header
+            auth={this.state.auth}
+            admin={this.state.admin}
+          />
           <Match
             exactly
             pattern="/"

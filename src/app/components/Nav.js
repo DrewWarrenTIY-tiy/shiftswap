@@ -9,12 +9,12 @@ import navBar from './Nav.css'
 export default class Nav extends React.Component {
   render () {
     const { auth } = this.props;
-    console.log("Nav props: " + this.props.auth);
+    const { admin } = this.props;
     return(
       <nav>
         <ul className="navBar">
           <li className={classnames("navItem", {
-            hide: !auth
+            hide: !admin
           })}><Link to='/manager'>Manager</Link></li>
           <li className={classnames("navItem", {
             hide: !auth

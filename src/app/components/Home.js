@@ -49,7 +49,6 @@ export default class Home extends React.Component {
   render () {
     // This render function is awesome now, because it only has one job which is the UI
     const { auth } = this.props;
-    console.log("this.state.auth of Home.js: " + this.state.auth);
 
     return (
       <div className="home">
