@@ -44,6 +44,9 @@ export default class Home extends React.Component {
         email: '',
         password: ''
       })
+      document.getElementById("email") = "";
+      document.getElementById("password") = "";
+
     }
 
   render () {
@@ -56,11 +59,13 @@ export default class Home extends React.Component {
         <h1>Home</h1>
         <form onSubmit={this.login.bind(this)}>
           <input
+            id="email"
             type="email"
             placeholder="Email"
             onChange={e => this.setState({email: e.target.value})}
           />
           <input
+            id="password"
             type="password"
             placeholder="Password"
             onChange={e => this.setState({password: e.target.value})}
