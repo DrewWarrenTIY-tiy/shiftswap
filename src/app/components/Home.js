@@ -38,12 +38,16 @@ export default class Home extends React.Component {
     logout() {
       firebase.auth().signOut();
       window.location.reload();
+      document.getElementById("email").value = "";
+      document.getElementById("password").value = "";
     }
     resetForm () {
       this.setState({
         email: '',
         password: ''
       })
+      document.getElementById("email").value = "";
+      document.getElementById("password").value = "";
     }
 
   render () {
