@@ -20,6 +20,7 @@ export default class Bar extends React.Component{
 
     return (
       <div className='manager'>
+        <h2>Bar Schedule</h2>
         <BarShiftsEmp barShifts={barShifts}
         barShiftsKeys={barShiftsKeys}
         emplData={emplData}

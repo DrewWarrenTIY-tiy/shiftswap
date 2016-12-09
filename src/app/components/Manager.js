@@ -24,6 +24,7 @@ export default class Manager extends React.Component{
 
     return (
       <div className='manager'>
+        <h2>Bar Schedule</h2>
         <BarShifts barShifts={barShifts}
         barShiftsKeys={barShiftsKeys}
         emplData={emplData}

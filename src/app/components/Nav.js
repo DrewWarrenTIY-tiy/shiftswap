@@ -19,6 +19,12 @@ export default class Nav extends React.Component {
           <li className={classnames("navItem", {
             hide: !auth
           })}><Link to='/bar'>Bar</Link></li>
+          <li className={classnames("navItem", {
+            hide: !auth
+          })}><Link to='/'>Server</Link></li>
+          <li className={classnames("navItem", {
+            hide: !auth
+          })}><Link to='/'>Door</Link></li>
           <li><Link to='/'>Home</Link></li>
         </ul>
       </nav>
