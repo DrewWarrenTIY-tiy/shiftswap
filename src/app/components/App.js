@@ -88,15 +88,13 @@ export default class App extends React.Component {
         barShifts: barShifts
       });
     });
-    // listen for firebase auth events at the top level, much easier to react to regardless of what route the user is in
+    // listen for firebase auth events at the top level
     firebase.auth().onAuthStateChanged(firebaseUser => {
       if (firebaseUser) {
         console.log('logged in');
         console.log(firebaseUser);
         this.handleAuthChange(true)
-        // this.handleUID(firebaseUser.uid)
         let empTest = this.state.fbdbRef.child('empTest').child(firebaseUser.uid).on('value', (snapshot) => {
-          // console.log((snapshot.val()).isAdmin);
           const user = snapshot.val();
           this.handleAdmin(user.isAdmin)
           this.handleUID(user.uid)
@@ -105,14 +103,6 @@ export default class App extends React.Component {
           this.handleDoor(user.isDoor)
           this.handleKitchen(user.isKitchen)
           this.handleServer(user.isServer)
-
-          // auth: false,
-          // barShifts: barShifts,
-          // barShiftsKeys: barShiftsKeys,
-          // emplData: emplData,
-          // fbdbRef: fbdbRef,
-          // uid: "",
-          // handleAdmin(snapshot.val()));
         });
       } else {
         console.log('not logged in');
@@ -161,6 +151,7 @@ export default class App extends React.Component {
           <Header
             auth={this.state.auth}
             admin={this.state.admin}
+            isBar={this.state.isBar}
           />
           <Match
             exactly
