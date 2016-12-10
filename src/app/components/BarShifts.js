@@ -12,7 +12,7 @@ export default class BarShifts extends React.Component {
 
     let barShifts = this.props.barShifts;
     let barShiftsKeys = this.props.barShiftsKeys;
-    let emplData = this.props.emplData;
+    let barList = this.props.barList;
     let fbdbRef = this.props.fbdbRef;
 
     return (
@@ -20,7 +20,7 @@ export default class BarShifts extends React.Component {
         {barShifts.map(function(c,i,a) {
           return (
             <BarShift key={"BarShift" + i}
-              emplData={emplData}
+              barList={barList}
               fbdbRef={fbdbRef}
               thisShift={barShiftsKeys[i]}
               value={a[i]} />

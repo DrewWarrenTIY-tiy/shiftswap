@@ -3,7 +3,6 @@
 import React from 'react';
 
 import BarShiftsEmp from './BarShiftsEmp';
-import EmpList from './EmpList';
 
 import manager from './Manager.css';
 

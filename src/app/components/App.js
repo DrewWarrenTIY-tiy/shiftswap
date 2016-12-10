@@ -30,6 +30,13 @@ var fbdbUsers = fbdbRef.child('empTest');
 let barShifts = [];
 let barShiftsKeys = [];
 let emplData = [];
+let barList = [];
+
+function addToBarList(val, key) {
+  if (val.isBar == true) {
+    barList.push(val.name)
+  }
+}
 
 function displayEmplData(val, key) {
   emplData.push(val)
@@ -41,6 +48,7 @@ export default class App extends React.Component {
     this.state = {
       admin: false,
       auth: false,
+      barList: barList,
       barShifts: barShifts,
       barShiftsKeys: barShiftsKeys,
       emplData: emplData,
@@ -55,6 +63,12 @@ export default class App extends React.Component {
       displayEmplData(snapshot.val(), snapshot.key);
       this.setState({
         emplData: emplData
+      });
+    }).bind(this)
+    fbdbUsers.on("child_added", (snapshot) => {
+      addToBarList(snapshot.val(), snapshot.key);
+      this.setState({
+        barList: barList
       });
     }).bind(this)
     const fbdbBarShiftsRef = this.state.fbdbRef.child('barshifts');
@@ -152,7 +166,7 @@ export default class App extends React.Component {
                 auth={this.state.auth}
                 barShifts={this.state.barShifts}
                 barShiftsKeys={this.state.barShiftsKeys}
-                emplData={this.state.emplData}
+                barList={this.state.barList}
                 fbdbRef={this.state.fbdbRef} {...defaultProps}
               />
             )}

@@ -4,7 +4,7 @@ import React from 'react';
 
 var firebase = require("firebase");
 
-export default class EmpList extends React.Component {
+export default class BarList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,16 +22,16 @@ export default class EmpList extends React.Component {
 
   render () {
 
-    let emplData = this.props.emplData;
+    let barList = this.props.barList;
     let fbdbRef = this.props.fbdbRef;
 
     return (
-      <div className='empList'>
+      <div className='barList'>
         <select className='dropDown'
           value={this.state.value}
           onChange={this.onDropdownChange}>
           <option  value=" - "> - </option>
-          {emplData.map((c,i,a) => {
+          {barList.map((c,i,a) => {
             return <option
                key={"Employee" + i}
                value={a[i]}>

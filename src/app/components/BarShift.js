@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import EmpList from './EmpList';
+import BarList from './BarList';
 
 var firebase = require("firebase");
 
@@ -33,7 +33,7 @@ export default class BarShift extends React.Component {
     return (
       <div className="shift">
         <span>{slicedShifts}: <br /> {this.state.value}</span>
-        <EmpList emplData={this.props.emplData}
+        <BarList barList={this.props.barList}
           fbdbRef={this.props.fbdbRef}
           handleChange={this.onHandleChange.bind(this)}
           value={this.props.value}/>
