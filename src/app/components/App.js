@@ -35,6 +35,7 @@ let barList = [];
 function addToBarList(val, key) {
   if (val.isBar == true) {
     barList.push(val.name)
+    barList.sort()
   }
 }
 
@@ -51,7 +52,6 @@ export default class App extends React.Component {
       barList: barList,
       barShifts: barShifts,
       barShiftsKeys: barShiftsKeys,
-      emplData: emplData,
       fbdbRef: fbdbRef,
       name: "",
       uid: "",
@@ -59,12 +59,6 @@ export default class App extends React.Component {
   }
 
   componentWillMount () {
-    fbdbEmpl.on("child_added", (snapshot) => {
-      displayEmplData(snapshot.val(), snapshot.key);
-      this.setState({
-        emplData: emplData
-      });
-    }).bind(this)
     fbdbUsers.on("child_added", (snapshot) => {
       addToBarList(snapshot.val(), snapshot.key);
       this.setState({
@@ -107,6 +101,10 @@ export default class App extends React.Component {
           this.handleAdmin(user.isAdmin)
           this.handleUID(user.uid)
           this.handleName(user.name)
+          this.handleBar(user.isBar)
+          this.handleDoor(user.isDoor)
+          this.handleKitchen(user.isKitchen)
+          this.handleServer(user.isServer)
 
           // auth: false,
           // barShifts: barShifts,
@@ -137,6 +135,22 @@ export default class App extends React.Component {
 
   handleUID (uid) {
     this.setState({ uid })
+  }
+
+  handleBar (isBar) {
+    this.setState({ isBar })
+  }
+
+  handleKitchen (isKitchen) {
+    this.setState({ isKitchen })
+  }
+
+  handleDoor (isDoor) {
+    this.setState({ isDoor })
+  }
+
+  handleServer (isServer) {
+    this.setState({ isServer })
   }
 
   render () {
