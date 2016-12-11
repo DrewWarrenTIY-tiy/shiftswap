@@ -14,7 +14,6 @@ export default class Server extends React.Component{
 
     let serverShifts = this.props.serverShifts;
     let serverShiftsKeys = this.props.serverShiftsKeys;
-    let emplData = this.props.emplData;
     let fbdbRef = this.props.fbdbRef;
 
     return (
@@ -22,7 +21,6 @@ export default class Server extends React.Component{
         <h2>Server Schedule</h2>
         <ServerShiftsEmp serverShifts={serverShifts}
         serverShiftsKeys={serverShiftsKeys}
-        emplData={emplData}
         fbdbRef={fbdbRef} />
       </div>
     )

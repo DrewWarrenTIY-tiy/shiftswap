@@ -26,13 +26,11 @@ firebase.initializeApp(config);
 var fbdbRef = firebase.database().ref();
 var fbdbBarShifts = fbdbRef.child('barshifts');
 var fbdbServerShifts = fbdbRef.child('servshifts');
-var fbdbEmpl = fbdbRef.child('employees');
 var fbdbUsers = fbdbRef.child('empTest');
 
 let barList = [];
 let barShifts = [];
 let barShiftsKeys = [];
-let emplData = [];
 let serverList = [];
 let serverShifts = [];
 let serverShiftsKeys = [];
@@ -49,10 +47,6 @@ function addToServerList(val, key) {
     serverList.push(val.name)
     serverList.sort()
   }
-}
-
-function displayEmplData(val, key) {
-  emplData.push(val)
 }
 
 export default class App extends React.Component {
