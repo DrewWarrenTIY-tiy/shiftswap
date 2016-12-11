@@ -7,6 +7,7 @@ import Bar from './Bar';
 import Header from './Header';
 import Home from './Home';
 import Manager from './Manager';
+import Server from './Server';
 
 import container from './App.css';
 
@@ -24,18 +25,29 @@ firebase.initializeApp(config);
 // Get a reference to the database service
 var fbdbRef = firebase.database().ref();
 var fbdbBarShifts = fbdbRef.child('barshifts');
+var fbdbServerShifts = fbdbRef.child('servshifts');
 var fbdbEmpl = fbdbRef.child('employees');
 var fbdbUsers = fbdbRef.child('empTest');
 
+let barList = [];
 let barShifts = [];
 let barShiftsKeys = [];
 let emplData = [];
-let barList = [];
+let serverList = [];
+let serverShifts = [];
+let serverShiftsKeys = [];
 
 function addToBarList(val, key) {
   if (val.isBar == true) {
     barList.push(val.name)
     barList.sort()
+  }
+}
+
+function addToServerList(val, key) {
+  if (val.isServer == true) {
+    serverList.push(val.name)
+    serverList.sort()
   }
 }
 
@@ -54,6 +66,9 @@ export default class App extends React.Component {
       barShiftsKeys: barShiftsKeys,
       fbdbRef: fbdbRef,
       name: "",
+      serverList: serverList,
+      serverShifts: serverShifts,
+      serverShiftsKeys: serverShiftsKeys,
       uid: "",
     }
   }
@@ -65,7 +80,14 @@ export default class App extends React.Component {
         barList: barList
       });
     }).bind(this)
+    fbdbUsers.on("child_added", (snapshot) => {
+      addToServerList(snapshot.val(), snapshot.key);
+      this.setState({
+        serverList: serverList
+      });
+    }).bind(this)
     const fbdbBarShiftsRef = this.state.fbdbRef.child('barshifts');
+    const fbdbServerShiftsRef = this.state.fbdbRef.child('servshifts');
     //POPULATES OBJECT KEYS ARRAY
     fbdbBarShiftsRef.on('value', snapshot => {
       let barShiftsObj = snapshot.val();
@@ -77,6 +99,16 @@ export default class App extends React.Component {
         barShiftsKeys: barShiftsKeys
       });
     });
+    fbdbServerShiftsRef.on('value', snapshot => {
+      let serverShiftsObj = snapshot.val();
+      let serverShiftsKeys = Object.keys(serverShiftsObj);
+      for (let i = 0; i < serverShiftsKeys.length; i++) {
+        serverShiftsKeys[i] = serverShiftsKeys[i];
+      }
+      this.setState({
+        serverShiftsKeys: serverShiftsKeys
+      });
+    });
     //POPULATES OBJECT VALS ARRAY
     fbdbBarShiftsRef.on('value', snapshot => {
       let barShiftsObj = snapshot.val();
@@ -86,6 +118,16 @@ export default class App extends React.Component {
       }
       this.setState({
         barShifts: barShifts
+      });
+    });
+    fbdbServerShiftsRef.on('value', snapshot => {
+      let serverShiftsObj = snapshot.val();
+      let serverShifts = Object.values(serverShiftsObj);
+      for (let i = 0; i < serverShifts.length; i++) {
+        serverShifts[i] = serverShifts[i];
+      }
+      this.setState({
+        serverShifts: serverShifts
       });
     });
     // listen for firebase auth events at the top level
@@ -152,6 +194,7 @@ export default class App extends React.Component {
             auth={this.state.auth}
             admin={this.state.admin}
             isBar={this.state.isBar}
+            isServer={this.state.isServer}
           />
           <Match
             exactly
@@ -169,10 +212,13 @@ export default class App extends React.Component {
             render={defaultProps => (
               <Manager
                 auth={this.state.auth}
+                barList={this.state.barList}
                 barShifts={this.state.barShifts}
                 barShiftsKeys={this.state.barShiftsKeys}
-                barList={this.state.barList}
-                fbdbRef={this.state.fbdbRef} {...defaultProps}
+                fbdbRef={this.state.fbdbRef}
+                serverList={this.state.serverList}
+                serverShifts={this.state.serverShifts}
+                serverShiftsKeys={this.state.serverShiftsKeys} {...defaultProps}
               />
             )}
           />
@@ -183,6 +229,17 @@ export default class App extends React.Component {
                 auth={this.state.auth}
                 barShifts={this.state.barShifts}
                 barShiftsKeys={this.state.barShiftsKeys}
+                fbdbRef={this.state.fbdbRef} {...defaultProps}
+              />
+            )}
+          />
+          <Match
+            pattern="/server"
+            render={defaultProps => (
+              <Server
+                auth={this.state.auth}
+                serverShifts={this.state.serverShifts}
+                serverShiftsKeys={this.state.serverShiftsKeys}
                 fbdbRef={this.state.fbdbRef} {...defaultProps}
               />
             )}
