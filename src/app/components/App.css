@@ -31,6 +31,20 @@ img {
   height: 150px;
 }
 
+.serverShifts {
+  display: flex;
+  flex-flow: column wrap;
+  width: 900px;
+  height: 220px;
+}
+
+.serverShiftsEmp {
+  display: flex;
+  flex-flow: column wrap;
+  width: 900px;
+  height: 120px;
+}
+
 .hide {
   opacity: 0;
 }

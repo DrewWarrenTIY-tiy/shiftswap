@@ -3,7 +3,7 @@
 import React from 'react';
 
 import BarShifts from './BarShifts';
-import EmpList from './EmpList';
+import MgrServerShifts from './MgrServerShifts'
 
 import manager from './Manager.css';
 
@@ -19,15 +19,23 @@ export default class Manager extends React.Component{
 
     let barShifts = this.props.barShifts;
     let barShiftsKeys = this.props.barShiftsKeys;
-    let emplData = this.props.emplData;
+    let barList = this.props.barList;
     let fbdbRef = this.props.fbdbRef;
+    let serverShifts = this.props.serverShifts;
+    let serverShiftsKeys = this.props.serverShiftsKeys;
+    let serverList = this.props.serverList;
 
     return (
       <div className='manager'>
         <h2>Bar Schedule</h2>
         <BarShifts barShifts={barShifts}
         barShiftsKeys={barShiftsKeys}
-        emplData={emplData}
+        barList={barList}
+        fbdbRef={fbdbRef} />
+        <h2>Server Schedule</h2>
+        <MgrServerShifts serverShifts={serverShifts}
+        serverShiftsKeys={serverShiftsKeys}
+        serverList={serverList}
         fbdbRef={fbdbRef} />
       </div>
     )

@@ -10,6 +10,8 @@ export default class Nav extends React.Component {
   render () {
     const { auth } = this.props;
     const { admin } = this.props;
+    const { isBar } = this.props;
+    const { isServer } = this.props;
     return(
       <nav>
         <ul className="navBar">
@@ -17,11 +19,11 @@ export default class Nav extends React.Component {
             hide: !admin
           })}><Link to='/manager'>Manager</Link></li>
           <li className={classnames("navItem", {
-            hide: !auth
+            hide: !isBar
           })}><Link to='/bar'>Bar</Link></li>
           <li className={classnames("navItem", {
-            hide: !auth
-          })}><Link to='/'>Server</Link></li>
+            hide: !isServer
+          })}><Link to='/server'>Server</Link></li>
           <li className={classnames("navItem", {
             hide: !auth
           })}><Link to='/'>Door</Link></li>

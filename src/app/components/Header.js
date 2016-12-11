@@ -14,6 +14,8 @@ export default class Header extends React.Component {
         <Nav
           auth={this.props.auth}
           admin={this.props.admin}
+          isBar={this.props.isBar}
+          isServer={this.props.isServer}
         />
       </header>
     );

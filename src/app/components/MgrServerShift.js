@@ -2,11 +2,11 @@
 
 import React from 'react';
 
-import BarList from './BarList';
+import ServerList from './ServerList';
 
 var firebase = require("firebase");
 
-export default class BarShift extends React.Component {
+export default class MgrServerShift extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +22,7 @@ export default class BarShift extends React.Component {
       value: val
     });
     var updates = {};
-    updates['/barshifts/' + this.props.thisShift] = val;
+    updates['/servshifts/' + this.props.thisShift] = val;
     return this.state.fbdbRef.update(updates);
   }
 
@@ -33,7 +33,7 @@ export default class BarShift extends React.Component {
     return (
       <div className="shift">
         <span>{slicedShifts}: <br /> {this.state.value}</span>
-        <BarList barList={this.props.barList}
+        <ServerList serverList={this.props.serverList}
           fbdbRef={this.props.fbdbRef}
           handleChange={this.onHandleChange.bind(this)}
           value={this.props.value}/>

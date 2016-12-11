@@ -7,6 +7,7 @@ import Bar from './Bar';
 import Header from './Header';
 import Home from './Home';
 import Manager from './Manager';
+import Server from './Server';
 
 import container from './App.css';
 
@@ -24,15 +25,28 @@ firebase.initializeApp(config);
 // Get a reference to the database service
 var fbdbRef = firebase.database().ref();
 var fbdbBarShifts = fbdbRef.child('barshifts');
-var fbdbEmpl = fbdbRef.child('employees');
+var fbdbServerShifts = fbdbRef.child('servshifts');
 var fbdbUsers = fbdbRef.child('empTest');
 
+let barList = [];
 let barShifts = [];
 let barShiftsKeys = [];
-let emplData = [];
+let serverList = [];
+let serverShifts = [];
+let serverShiftsKeys = [];
 
-function displayEmplData(val, key) {
-  emplData.push(val)
+function addToBarList(val, key) {
+  if (val.isBar == true) {
+    barList.push(val.name)
+    barList.sort()
+  }
+}
+
+function addToServerList(val, key) {
+  if (val.isServer == true) {
+    serverList.push(val.name)
+    serverList.sort()
+  }
 }
 
 export default class App extends React.Component {
@@ -41,23 +55,33 @@ export default class App extends React.Component {
     this.state = {
       admin: false,
       auth: false,
+      barList: barList,
       barShifts: barShifts,
       barShiftsKeys: barShiftsKeys,
-      emplData: emplData,
       fbdbRef: fbdbRef,
       name: "",
+      serverList: serverList,
+      serverShifts: serverShifts,
+      serverShiftsKeys: serverShiftsKeys,
       uid: "",
     }
   }
 
   componentWillMount () {
-    fbdbEmpl.on("child_added", (snapshot) => {
-      displayEmplData(snapshot.val(), snapshot.key);
+    fbdbUsers.on("child_added", (snapshot) => {
+      addToBarList(snapshot.val(), snapshot.key);
       this.setState({
-        emplData: emplData
+        barList: barList
+      });
+    }).bind(this)
+    fbdbUsers.on("child_added", (snapshot) => {
+      addToServerList(snapshot.val(), snapshot.key);
+      this.setState({
+        serverList: serverList
       });
     }).bind(this)
     const fbdbBarShiftsRef = this.state.fbdbRef.child('barshifts');
+    const fbdbServerShiftsRef = this.state.fbdbRef.child('servshifts');
     //POPULATES OBJECT KEYS ARRAY
     fbdbBarShiftsRef.on('value', snapshot => {
       let barShiftsObj = snapshot.val();
@@ -67,6 +91,16 @@ export default class App extends React.Component {
       }
       this.setState({
         barShiftsKeys: barShiftsKeys
+      });
+    });
+    fbdbServerShiftsRef.on('value', snapshot => {
+      let serverShiftsObj = snapshot.val();
+      let serverShiftsKeys = Object.keys(serverShiftsObj);
+      for (let i = 0; i < serverShiftsKeys.length; i++) {
+        serverShiftsKeys[i] = serverShiftsKeys[i];
+      }
+      this.setState({
+        serverShiftsKeys: serverShiftsKeys
       });
     });
     //POPULATES OBJECT VALS ARRAY
@@ -80,27 +114,31 @@ export default class App extends React.Component {
         barShifts: barShifts
       });
     });
-    // listen for firebase auth events at the top level, much easier to react to regardless of what route the user is in
+    fbdbServerShiftsRef.on('value', snapshot => {
+      let serverShiftsObj = snapshot.val();
+      let serverShifts = Object.values(serverShiftsObj);
+      for (let i = 0; i < serverShifts.length; i++) {
+        serverShifts[i] = serverShifts[i];
+      }
+      this.setState({
+        serverShifts: serverShifts
+      });
+    });
+    // listen for firebase auth events at the top level
     firebase.auth().onAuthStateChanged(firebaseUser => {
       if (firebaseUser) {
         console.log('logged in');
         console.log(firebaseUser);
         this.handleAuthChange(true)
-        // this.handleUID(firebaseUser.uid)
         let empTest = this.state.fbdbRef.child('empTest').child(firebaseUser.uid).on('value', (snapshot) => {
-          // console.log((snapshot.val()).isAdmin);
           const user = snapshot.val();
           this.handleAdmin(user.isAdmin)
           this.handleUID(user.uid)
           this.handleName(user.name)
-
-          // auth: false,
-          // barShifts: barShifts,
-          // barShiftsKeys: barShiftsKeys,
-          // emplData: emplData,
-          // fbdbRef: fbdbRef,
-          // uid: "",
-          // handleAdmin(snapshot.val()));
+          this.handleBar(user.isBar)
+          this.handleDoor(user.isDoor)
+          this.handleKitchen(user.isKitchen)
+          this.handleServer(user.isServer)
         });
       } else {
         console.log('not logged in');
@@ -125,6 +163,22 @@ export default class App extends React.Component {
     this.setState({ uid })
   }
 
+  handleBar (isBar) {
+    this.setState({ isBar })
+  }
+
+  handleKitchen (isKitchen) {
+    this.setState({ isKitchen })
+  }
+
+  handleDoor (isDoor) {
+    this.setState({ isDoor })
+  }
+
+  handleServer (isServer) {
+    this.setState({ isServer })
+  }
+
   render () {
 
     return (
@@ -133,6 +187,8 @@ export default class App extends React.Component {
           <Header
             auth={this.state.auth}
             admin={this.state.admin}
+            isBar={this.state.isBar}
+            isServer={this.state.isServer}
           />
           <Match
             exactly
@@ -150,10 +206,13 @@ export default class App extends React.Component {
             render={defaultProps => (
               <Manager
                 auth={this.state.auth}
+                barList={this.state.barList}
                 barShifts={this.state.barShifts}
                 barShiftsKeys={this.state.barShiftsKeys}
-                emplData={this.state.emplData}
-                fbdbRef={this.state.fbdbRef} {...defaultProps}
+                fbdbRef={this.state.fbdbRef}
+                serverList={this.state.serverList}
+                serverShifts={this.state.serverShifts}
+                serverShiftsKeys={this.state.serverShiftsKeys} {...defaultProps}
               />
             )}
           />
@@ -164,6 +223,17 @@ export default class App extends React.Component {
                 auth={this.state.auth}
                 barShifts={this.state.barShifts}
                 barShiftsKeys={this.state.barShiftsKeys}
+                fbdbRef={this.state.fbdbRef} {...defaultProps}
+              />
+            )}
+          />
+          <Match
+            pattern="/server"
+            render={defaultProps => (
+              <Server
+                auth={this.state.auth}
+                serverShifts={this.state.serverShifts}
+                serverShiftsKeys={this.state.serverShiftsKeys}
                 fbdbRef={this.state.fbdbRef} {...defaultProps}
               />
             )}

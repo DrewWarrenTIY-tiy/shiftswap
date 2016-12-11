@@ -3,7 +3,6 @@
 import React from 'react';
 
 import BarShiftsEmp from './BarShiftsEmp';
-import EmpList from './EmpList';
 
 import manager from './Manager.css';
 
@@ -15,7 +14,6 @@ export default class Bar extends React.Component{
 
     let barShifts = this.props.barShifts;
     let barShiftsKeys = this.props.barShiftsKeys;
-    let emplData = this.props.emplData;
     let fbdbRef = this.props.fbdbRef;
 
     return (
@@ -23,7 +21,6 @@ export default class Bar extends React.Component{
         <h2>Bar Schedule</h2>
         <BarShiftsEmp barShifts={barShifts}
         barShiftsKeys={barShiftsKeys}
-        emplData={emplData}
         fbdbRef={fbdbRef} />
       </div>
     )
