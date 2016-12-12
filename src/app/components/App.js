@@ -4,8 +4,10 @@ import React from 'react';
 import { BrowserRouter as Router, Link, Match, Miss } from 'react-router';
 
 import Bar from './Bar';
+import Door from './Door';
 import Header from './Header';
 import Home from './Home';
+import Kitchen from './Kitchen';
 import Manager from './Manager';
 import Server from './Server';
 
@@ -25,12 +27,20 @@ firebase.initializeApp(config);
 // Get a reference to the database service
 var fbdbRef = firebase.database().ref();
 var fbdbBarShifts = fbdbRef.child('barshifts');
+var fbdbDoorShifts = fbdbRef.child('doorshifts');
+var fbdbKitchenShifts = fbdbRef.child('kitchenshifts');
 var fbdbServerShifts = fbdbRef.child('servshifts');
 var fbdbUsers = fbdbRef.child('empTest');
 
 let barList = [];
 let barShifts = [];
 let barShiftsKeys = [];
+let doorList = [];
+let doorShifts = [];
+let doorShiftsKeys = [];
+let kitchenList = [];
+let kitchenShifts = [];
+let kitchenShiftsKeys = [];
 let serverList = [];
 let serverShifts = [];
 let serverShiftsKeys = [];
@@ -39,6 +49,20 @@ function addToBarList(val, key) {
   if (val.isBar == true) {
     barList.push(val.name)
     barList.sort()
+  }
+}
+
+function addToDoorList(val, key) {
+  if (val.isDoor == true) {
+    doorList.push(val.name)
+    doorList.sort()
+  }
+}
+
+function addToKitchenList(val, key) {
+  if (val.isKitchen == true) {
+    kitchenList.push(val.name)
+    kitchenList.sort()
   }
 }
 
@@ -58,6 +82,12 @@ export default class App extends React.Component {
       barList: barList,
       barShifts: barShifts,
       barShiftsKeys: barShiftsKeys,
+      doorList: doorList,
+      doorShifts: doorShifts,
+      doorShiftsKeys: doorShiftsKeys,
+      kitchenList: kitchenList,
+      kitchenShifts: kitchenShifts,
+      kitchenShiftsKeys: kitchenShiftsKeys,
       fbdbRef: fbdbRef,
       name: "",
       serverList: serverList,
@@ -80,7 +110,21 @@ export default class App extends React.Component {
         serverList: serverList
       });
     }).bind(this)
+    fbdbUsers.on("child_added", (snapshot) => {
+      addToDoorList(snapshot.val(), snapshot.key);
+      this.setState({
+        doorList: doorList
+      });
+    }).bind(this)
+    fbdbUsers.on("child_added", (snapshot) => {
+      addToKitchenList(snapshot.val(), snapshot.key);
+      this.setState({
+        kitchenList: kitchenList
+      });
+    }).bind(this)
     const fbdbBarShiftsRef = this.state.fbdbRef.child('barshifts');
+    const fbdbDoorShiftsRef = this.state.fbdbRef.child('doorshifts');
+    const fbdbKitchenShiftsRef = this.state.fbdbRef.child('kitchenshifts');
     const fbdbServerShiftsRef = this.state.fbdbRef.child('servshifts');
     //POPULATES OBJECT KEYS ARRAY
     fbdbBarShiftsRef.on('value', snapshot => {
@@ -91,6 +135,26 @@ export default class App extends React.Component {
       }
       this.setState({
         barShiftsKeys: barShiftsKeys
+      });
+    });
+    fbdbDoorShiftsRef.on('value', snapshot => {
+      let doorShiftsObj = snapshot.val();
+      let doorShiftsKeys = Object.keys(doorShiftsObj);
+      for (let i = 0; i < doorShiftsKeys.length; i++) {
+        doorShiftsKeys[i] = doorShiftsKeys[i];
+      }
+      this.setState({
+        doorShiftsKeys: doorShiftsKeys
+      });
+    });
+    fbdbKitchenShiftsRef.on('value', snapshot => {
+      let kitchenShiftsObj = snapshot.val();
+      let kitchenShiftsKeys = Object.keys(kitchenShiftsObj);
+      for (let i = 0; i < kitchenShiftsKeys.length; i++) {
+        kitchenShiftsKeys[i] = kitchenShiftsKeys[i];
+      }
+      this.setState({
+        kitchenShiftsKeys: kitchenShiftsKeys
       });
     });
     fbdbServerShiftsRef.on('value', snapshot => {
@@ -112,6 +176,26 @@ export default class App extends React.Component {
       }
       this.setState({
         barShifts: barShifts
+      });
+    });
+    fbdbDoorShiftsRef.on('value', snapshot => {
+      let doorShiftsObj = snapshot.val();
+      let doorShifts = Object.values(doorShiftsObj);
+      for (let i = 0; i < doorShifts.length; i++) {
+        doorShifts[i] = doorShifts[i];
+      }
+      this.setState({
+        doorShifts: doorShifts
+      });
+    });
+    fbdbKitchenShiftsRef.on('value', snapshot => {
+      let kitchenShiftsObj = snapshot.val();
+      let kitchenShifts = Object.values(kitchenShiftsObj);
+      for (let i = 0; i < kitchenShifts.length; i++) {
+        kitchenShifts[i] = kitchenShifts[i];
+      }
+      this.setState({
+        kitchenShifts: kitchenShifts
       });
     });
     fbdbServerShiftsRef.on('value', snapshot => {
@@ -188,6 +272,8 @@ export default class App extends React.Component {
             auth={this.state.auth}
             admin={this.state.admin}
             isBar={this.state.isBar}
+            isDoor={this.state.isDoor}
+            isKitchen={this.state.isKitchen}
             isServer={this.state.isServer}
           />
           <Match
@@ -210,9 +296,15 @@ export default class App extends React.Component {
                 barShifts={this.state.barShifts}
                 barShiftsKeys={this.state.barShiftsKeys}
                 fbdbRef={this.state.fbdbRef}
+                kitchenList={this.state.kitchenList}
+                kitchenShifts={this.state.kitchenShifts}
+                kitchenShiftsKeys={this.state.kitchenShiftsKeys}
                 serverList={this.state.serverList}
                 serverShifts={this.state.serverShifts}
-                serverShiftsKeys={this.state.serverShiftsKeys} {...defaultProps}
+                serverShiftsKeys={this.state.serverShiftsKeys}
+                doorList={this.state.doorList}
+                doorShifts={this.state.doorShifts}
+                doorShiftsKeys={this.state.doorShiftsKeys} {...defaultProps}
               />
             )}
           />
@@ -228,15 +320,37 @@ export default class App extends React.Component {
             )}
           />
           <Match
-            pattern="/server"
+            pattern="/door"
             render={defaultProps => (
-              <Server
+              <Door
                 auth={this.state.auth}
-                serverShifts={this.state.serverShifts}
-                serverShiftsKeys={this.state.serverShiftsKeys}
+                doorShifts={this.state.doorShifts}
+                doorShiftsKeys={this.state.doorShiftsKeys}
                 fbdbRef={this.state.fbdbRef} {...defaultProps}
               />
             )}
+          />
+          <Match
+            pattern="/kitchen"
+            render={defaultProps => (
+              <Kitchen
+                auth={this.state.auth}
+                kitchenShifts={this.state.kitchenShifts}
+                kitchenShiftsKeys={this.state.kitchenShiftsKeys}
+                fbdbRef={this.state.fbdbRef} {...defaultProps}
+              />
+            )}
+          />
+        <Match
+          pattern="/server"
+          render={defaultProps => (
+            <Server
+              auth={this.state.auth}
+              serverShifts={this.state.serverShifts}
+              serverShiftsKeys={this.state.serverShiftsKeys}
+              fbdbRef={this.state.fbdbRef} {...defaultProps}
+              />
+          )}
           />
         </div>
       </Router>
