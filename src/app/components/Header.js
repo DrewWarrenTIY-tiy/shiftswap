@@ -15,6 +15,8 @@ export default class Header extends React.Component {
           auth={this.props.auth}
           admin={this.props.admin}
           isBar={this.props.isBar}
+          isDoor={this.props.isDoor}
+          isKitchen={this.props.isKitchen}
           isServer={this.props.isServer}
         />
       </header>

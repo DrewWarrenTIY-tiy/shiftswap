@@ -45,6 +45,34 @@ img {
   height: 120px;
 }
 
+.kitchenShifts {
+  display: flex;
+  flex-flow: column wrap;
+  width: 900px;
+  height: 220px;
+}
+
+.kitchenShiftsEmp {
+  display: flex;
+  flex-flow: column wrap;
+  width: 900px;
+  height: 120px;
+}
+
+.doorShifts {
+  display: flex;
+  flex-flow: column wrap;
+  width: 900px;
+  height: 220px;
+}
+
+.doorShiftsEmp {
+  display: flex;
+  flex-flow: column wrap;
+  width: 900px;
+  height: 120px;
+}
+
 .hide {
   opacity: 0;
 }
