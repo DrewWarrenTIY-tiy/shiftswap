@@ -8,8 +8,6 @@ import MgrKitchenShifts from './MgrKitchenShifts';
 import MgrServerShifts from './MgrServerShifts';
 import NewUser from './NewUser';
 
-import manager from './Manager.css';
-
 var firebase = require("firebase");
 
 export default class Manager extends React.Component{
@@ -27,9 +25,11 @@ export default class Manager extends React.Component{
     let doorShiftsKeys = this.props.doorShiftsKeys;
     let doorList = this.props.doorList;
     let fbdbRef = this.props.fbdbRef;
+    let fbdbRefTwo = this.props.fbdbRefTwo;
     let kitchenShifts = this.props.kitchenShifts;
     let kitchenShiftsKeys = this.props.kitchenShiftsKeys;
     let kitchenList = this.props.kitchenList;
+    let secondaryApp = this.props.secondaryApp;
     let serverShifts = this.props.serverShifts;
     let serverShiftsKeys = this.props.serverShiftsKeys;
     let serverList = this.props.serverList;
@@ -56,8 +56,6 @@ export default class Manager extends React.Component{
         serverShiftsKeys={serverShiftsKeys}
         serverList={serverList}
         fbdbRef={fbdbRef} />
-        <h2>New Employee</h2>
-        <NewUser fbdbRef={fbdbRef} />
       </div>
     )
   }

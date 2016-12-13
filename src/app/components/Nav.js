@@ -4,8 +4,6 @@ import React from 'react';
 import { Link } from 'react-router';
 import classnames from 'classnames';
 
-import navBar from './Nav.css'
-
 export default class Nav extends React.Component {
   render () {
     const { auth } = this.props;

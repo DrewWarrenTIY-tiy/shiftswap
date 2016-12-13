@@ -4,8 +4,6 @@ import React from 'react';
 
 import BarShiftsEmp from './BarShiftsEmp';
 
-import manager from './Manager.css';
-
 var firebase = require("firebase");
 
 export default class Bar extends React.Component{

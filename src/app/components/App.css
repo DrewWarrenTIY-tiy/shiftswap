@@ -76,3 +76,55 @@ img {
 .hide {
   opacity: 0;
 }
+
+.navBar {
+  list-style-type: square;
+  margin-right: .5em;
+}
+
+.navBar li {
+  list-style: none;
+  display: inline-block;
+  margin: .2em;
+  padding: 8px;
+  background-color: lightslategrey;
+  color: lightgrey;
+}
+
+.navBar a {
+  text-decoration: none;
+  color: lightgrey;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: darkred;
+}
+
+header img {
+  border-radius: 50%;
+  height: 80px;
+  margin: 5px;
+}
+
+.manager {
+  background-color: #555;
+  font-family: Helvetica;
+}
+
+.server {
+  background-color: #555;
+  font-family: Helvetica;
+}
+
+.kitchen {
+  background-color: #555;
+  font-family: Helvetica;
+}
+
+.door {
+  background-color: #555;
+  font-family: Helvetica;
+}

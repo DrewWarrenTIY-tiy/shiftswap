@@ -4,8 +4,6 @@ import React from 'react';
 
 import DoorShiftsEmp from './DoorShiftsEmp';
 
-import manager from './Manager.css';
-
 var firebase = require("firebase");
 
 export default class Door extends React.Component{

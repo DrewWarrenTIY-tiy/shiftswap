@@ -33,7 +33,7 @@ export default class NewUser extends React.Component {
   render () {
     return (
       <div className='newUser'>
-        <form onSubmit={this.addNewUser}>
+        <form onSubmit={this.addNewUser.bind(this)}>
           <label>Email</label>
           <input
             className="newEmail"

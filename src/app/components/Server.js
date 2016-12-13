@@ -4,8 +4,6 @@ import React from 'react';
 
 import ServerShiftsEmp from './ServerShiftsEmp';
 
-import manager from './Manager.css';
-
 var firebase = require("firebase");
 
 export default class Server extends React.Component{

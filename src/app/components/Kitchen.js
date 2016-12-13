@@ -4,8 +4,6 @@ import React from 'react';
 
 import KitchenShiftsEmp from './KitchenShiftsEmp';
 
-import manager from './Manager.css';
-
 var firebase = require("firebase");
 
 export default class Kitchen extends React.Component{
