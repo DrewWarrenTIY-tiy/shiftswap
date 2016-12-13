@@ -6,6 +6,7 @@ import BarShifts from './BarShifts';
 import MgrDoorShifts from './MgrDoorShifts';
 import MgrKitchenShifts from './MgrKitchenShifts';
 import MgrServerShifts from './MgrServerShifts';
+import NewUser from './NewUser';
 
 import manager from './Manager.css';
 
@@ -55,6 +56,8 @@ export default class Manager extends React.Component{
         serverShiftsKeys={serverShiftsKeys}
         serverList={serverList}
         fbdbRef={fbdbRef} />
+        <h2>New Employee</h2>
+        <NewUser fbdbRef={fbdbRef} />
       </div>
     )
   }

@@ -47,7 +47,6 @@ export default class Home extends React.Component {
     }
 
   render () {
-    // This render function is awesome now, because it only has one job which is the UI
     const { auth } = this.props;
 
     return (
@@ -75,7 +74,6 @@ export default class Home extends React.Component {
             Log In
           </button>
         </form>
-        {/* <button className="btn btn-secondary">Sign Up</button> */}
        <button
          onClick={this.logout.bind(this)}
          className={classnames("btn btn-action btnLogout", {
