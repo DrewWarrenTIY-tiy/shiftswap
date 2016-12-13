@@ -17,7 +17,7 @@ export default class Kitchen extends React.Component{
     let fbdbRef = this.props.fbdbRef;
 
     return (
-      <div className='manager'>
+      <div className='kitchen'>
         <h2>Kitchen Schedule</h2>
         <KitchenShiftsEmp kitchenShifts={kitchenShifts}
         kitchenShiftsKeys={kitchenShiftsKeys}

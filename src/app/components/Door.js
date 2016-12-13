@@ -17,7 +17,7 @@ export default class Door extends React.Component{
     let fbdbRef = this.props.fbdbRef;
 
     return (
-      <div className='manager'>
+      <div className='door'>
         <h2>Door Schedule</h2>
         <DoorShiftsEmp doorShifts={doorShifts}
         doorShiftsKeys={doorShiftsKeys}
