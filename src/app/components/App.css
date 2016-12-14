@@ -1,3 +1,7 @@
+* {
+  margin: 0;
+}
+
 @media (max-width: 420px) {
 
     body {
@@ -5,6 +9,7 @@
     }
 
     header {
+      /*position: relative;*/
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -75,11 +80,11 @@
       box-shadow: 3px 3px 3px #666666;
       font-family: Arial;
       color: #ffffff;
-      font-size: 20px;
-      padding: 10px 10px 10px 5px;
-      margin: 5px 10px 5px 10px;
+      font-size: 15px;
+      padding: 10px 5px 10px 5px;
+      margin: 5px 5px 5px 5px;
       text-decoration: none;
-      width: 107px;
+      width: 74px;
     }
 
     .navItem a {
@@ -120,32 +125,23 @@
 
   body {
     background-color: darkslategrey;
+    overflow: auto;
   }
 
-  .manager {
-    margin-top: 20px;
-    padding-left: 10px;
+  .home {
     position: absolute;
+    margin-top: 100px;
+    padding-left: 10px;
+    text-align: center;
+    width: 100%;
   }
 
-  .kitchen {
-    position: absolute;
+  .bodyRoute {
+    margin: 110px 10px 10px 10px;
     padding-left: 10px;
-  }
-
-  .door {
     position: absolute;
-    padding-left: 10px;
-  }
-
-  .server {
-    position: absolute;
-    padding-left: 10px;
-  }
-
-  .bar {
-    position: absolute;
-    padding-left: 10px;
+    background-color: #555;
+    font-family: Helvetica;
   }
 
   .barShifts {
@@ -166,7 +162,7 @@
     display: flex;
     flex-flow: column wrap;
     min-width: 900px;
-    height: 280px;
+    height: 300px;
   }
 
   .serverShiftsEmp {
@@ -180,7 +176,7 @@
     display: flex;
     flex-flow: column wrap;
     min-width: 900px;
-    height: 280px;
+    height: 300px;
   }
 
   .kitchenShiftsEmp {
@@ -194,7 +190,7 @@
     display: flex;
     flex-flow: column wrap;
     min-width: 900px;
-    height: 280px;
+    height: 300px;
   }
 
   .doorShiftsEmp {
@@ -213,11 +209,8 @@
     justify-content: flex-end;
     flex-wrap: wrap;
     margin-right: .5em;
-  }
-
-  .navBar:after {
-    content: '';
-    width: 100%;
+    width: 305px;
+    height: 102px;
   }
 
   .navItem:nth-child(n + 4) {
@@ -257,41 +250,19 @@
   }
 
   header {
+    position: fixed;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: darkred;
+    width: 100%;
+    z-index: 1;
   }
 
   header img {
     border-radius: 50%;
     height: 80px;
     margin: 5px;
-  }
-
-  .manager {
-    background-color: #555;
-    font-family: Helvetica;
-  }
-
-  .bar {
-    background-color: #555;
-    font-family: Helvetica;
-  }
-
-  .server {
-    background-color: #555;
-    font-family: Helvetica;
-  }
-
-  .kitchen {
-    background-color: #555;
-    font-family: Helvetica;
-  }
-
-  .door {
-    background-color: #555;
-    font-family: Helvetica;
   }
 
   .homeBtn {
@@ -321,10 +292,6 @@
     text-decoration: none;
   }
 
-  .home {
-    text-align: center;
-  }
-
 }
 
 @media (min-width: 660px) {
@@ -336,6 +303,8 @@
   .navBar {
     display: inline-block;
     margin-right: .5em;
+    width: auto;
+    height: auto;
   }
 
   .navBar:after {

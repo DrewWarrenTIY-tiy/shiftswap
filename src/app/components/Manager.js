@@ -35,7 +35,7 @@ export default class Manager extends React.Component{
     let serverList = this.props.serverList;
 
     return (
-      <div className='manager'>
+      <div className='bodyRoute manager'>
         <h2>Bar Schedule</h2>
         <BarShifts barShifts={barShifts}
         barShiftsKeys={barShiftsKeys}

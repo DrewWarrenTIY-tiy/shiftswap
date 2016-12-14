@@ -15,7 +15,7 @@ export default class Server extends React.Component{
     let fbdbRef = this.props.fbdbRef;
 
     return (
-      <div className='server'>
+      <div className='bodyRoute server'>
         <h2>Server Schedule</h2>
         <ServerShiftsEmp serverShifts={serverShifts}
         serverShiftsKeys={serverShiftsKeys}

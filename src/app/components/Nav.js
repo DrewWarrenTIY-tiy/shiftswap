@@ -15,22 +15,22 @@ export default class Nav extends React.Component {
     return(
       <nav>
         <div className="navBar">
-          <button className={classnames("navItem", {
+          <Link to='/manager'><button className={classnames("navItem", {
             hide: !admin
-          })}><Link to='/manager'>Manager</Link></button>
-        <button className={classnames("navItem", {
+          })}>Manager</button></Link>
+        <Link to='/bar'><button className={classnames("navItem", {
             hide: !isBar
-          })}><Link to='/bar'>Bar</Link></button>
-        <button className={classnames("navItem", {
+          })}>Bar</button></Link>
+        <Link to='/door'><button className={classnames("navItem", {
               hide: !isDoor
-            })}><Link to='/door'>Door</Link></button>
-          <button className={classnames("navItem", {
+            })}>Door</button></Link>
+          <Link to='/kitchen'><button className={classnames("navItem", {
               hide: !isKitchen
-            })}><Link to='/kitchen'>Kitchen</Link></button>
-          <button className={classnames("navItem", {
+            })}>Kitchen</button></Link>
+          <Link to='/server'><button className={classnames("navItem", {
             hide: !isServer
-          })}><Link to='/server'>Server</Link></button>
-        <button className="navItem"><Link to='/'>Home</Link></button>
+          })}>Server</button></Link>
+        <Link to='/'><button className="navItem">Home</button></Link>
         </div>
       </nav>
     );
