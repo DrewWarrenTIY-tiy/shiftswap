@@ -137,7 +137,7 @@
     padding-left: 10px;
     position: absolute;
     background-color: #555;
-    font-family: Helvetica;
+    font-family: Helvetica, sans-serif;
   }
 
   .barShifts {
@@ -224,7 +224,7 @@
     -webkit-border-radius: 5;
     -moz-border-radius: 5;
     border-radius: 5px;
-    font-family: Arial;
+    font-family: Arial, sans-serif;;
     color: #000000;
     font-size: 15px;
     padding: 10px 5px 10px 5px;
@@ -273,7 +273,7 @@
     -webkit-box-shadow: 3px 3px 3px #666666;
     -moz-box-shadow: 3px 3px 3px #666666;
     box-shadow: 3px 3px 3px #666666;
-    font-family: Arial;
+    font-family: Arial, sans-serif;;
     color: #000000;
     font-size: 15px;
     padding: 10px 5px 10px 5px;
