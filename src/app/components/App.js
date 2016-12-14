@@ -174,42 +174,46 @@ export default class App extends React.Component {
     //POPULATES OBJECT VALS ARRAY
     fbdbBarShiftsRef.on('value', snapshot => {
       let barShiftsObj = snapshot.val();
-      let barShifts = Object.values(barShiftsObj);
-      for (let i = 0; i < barShifts.length; i++) {
-        barShifts[i] = barShifts[i];
-      }
+      var result = [];
+      var keys = Object.keys(barShiftsObj);
+      for (var i = 0, len = keys.length; i < len; i++) {
+      result.push(barShiftsObj[keys[i]]);
+        }
       this.setState({
-        barShifts: barShifts
+        barShifts: result
       });
     });
     fbdbDoorShiftsRef.on('value', snapshot => {
       let doorShiftsObj = snapshot.val();
-      let doorShifts = Object.values(doorShiftsObj);
-      for (let i = 0; i < doorShifts.length; i++) {
-        doorShifts[i] = doorShifts[i];
-      }
+      var result = [];
+      var keys = Object.keys(doorShiftsObj);
+      for (var i = 0, len = keys.length; i < len; i++) {
+      result.push(doorShiftsObj[keys[i]]);
+        }
       this.setState({
-        doorShifts: doorShifts
+        doorShifts: result
       });
     });
     fbdbKitchenShiftsRef.on('value', snapshot => {
       let kitchenShiftsObj = snapshot.val();
-      let kitchenShifts = Object.values(kitchenShiftsObj);
-      for (let i = 0; i < kitchenShifts.length; i++) {
-        kitchenShifts[i] = kitchenShifts[i];
-      }
+      var result = [];
+      var keys = Object.keys(kitchenShiftsObj);
+      for (var i = 0, len = keys.length; i < len; i++) {
+      result.push(kitchenShiftsObj[keys[i]]);
+        }
       this.setState({
-        kitchenShifts: kitchenShifts
+        kitchenShifts: result
       });
     });
     fbdbServerShiftsRef.on('value', snapshot => {
       let serverShiftsObj = snapshot.val();
-      let serverShifts = Object.values(serverShiftsObj);
-      for (let i = 0; i < serverShifts.length; i++) {
-        serverShifts[i] = serverShifts[i];
-      }
+      var result = [];
+      var keys = Object.keys(serverShiftsObj);
+      for (var i = 0, len = keys.length; i < len; i++) {
+      result.push(serverShiftsObj[keys[i]]);
+        }
       this.setState({
-        serverShifts: serverShifts
+        serverShifts: result
       });
     });
     // listen for firebase auth events at the top level
