@@ -144,56 +144,56 @@
     display: flex;
     flex-flow: column wrap;
     min-width: 900px;
-    height: 400px;
+    max-height: 440px;
   }
 
   .barShiftsEmp {
     display: flex;
     flex-flow: column wrap;
     min-width: 900px;
-    height: 230px;
+    height: 250px;
   }
 
   .serverShifts {
     display: flex;
     flex-flow: column wrap;
     min-width: 900px;
-    height: 300px;
+    height: 320px;
   }
 
   .serverShiftsEmp {
     display: flex;
     flex-flow: column wrap;
     min-width: 900px;
-    height: 180px;
+    height: 200px;
   }
 
   .kitchenShifts {
     display: flex;
     flex-flow: column wrap;
     min-width: 900px;
-    height: 300px;
+    height: 320px;
   }
 
   .kitchenShiftsEmp {
     display: flex;
     flex-flow: column wrap;
     min-width: 900px;
-    height: 180px;
+    height: 200px;
   }
 
   .doorShifts {
     display: flex;
     flex-flow: column wrap;
     min-width: 900px;
-    height: 300px;
+    height: 320px;
   }
 
   .doorShiftsEmp {
     display: flex;
     flex-flow: column wrap;
     min-width: 900px;
-    height: 180px;
+    height: 200px;
   }
 
   .hide {
@@ -289,7 +289,7 @@
 
 }
 
-@media (min-width: 660px) {
+@media (min-width: 670px) {
 
   .home {
     text-align: left;
