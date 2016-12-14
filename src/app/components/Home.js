@@ -58,6 +58,7 @@ export default class Home extends React.Component {
           >
           <input
             id="email"
+            tabIndex={1}
             className={classnames("input", {
               hide: auth
             })}
@@ -68,6 +69,7 @@ export default class Home extends React.Component {
           <br/>
           <input
             id="password"
+            tabIndex={2}
             className={classnames("input", {
               hide: auth
             })}
@@ -78,6 +80,7 @@ export default class Home extends React.Component {
         <br />
           <button
             type='submit'
+            tabIndex={3}
             className={classnames("homeBtn btn-action", {
               hide: auth
             })}
