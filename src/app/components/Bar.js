@@ -4,8 +4,6 @@ import React from 'react';
 
 import BarShiftsEmp from './BarShiftsEmp';
 
-import manager from './Manager.css';
-
 var firebase = require("firebase");
 
 export default class Bar extends React.Component{
@@ -17,7 +15,7 @@ export default class Bar extends React.Component{
     let fbdbRef = this.props.fbdbRef;
 
     return (
-      <div className='manager'>
+      <div className='bodyRoute bar'>
         <h2>Bar Schedule</h2>
         <BarShiftsEmp barShifts={barShifts}
         barShiftsKeys={barShiftsKeys}

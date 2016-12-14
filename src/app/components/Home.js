@@ -47,38 +47,50 @@ export default class Home extends React.Component {
     }
 
   render () {
-    // This render function is awesome now, because it only has one job which is the UI
     const { auth } = this.props;
 
     return (
       <div className="home">
         <h1>Home</h1>
-        <form onSubmit={this.login.bind(this)}>
+        <form
+          className="loginForm"
+          onSubmit={this.login.bind(this)}
+          >
           <input
             id="email"
+            className={classnames("input", {
+              hide: auth
+            })}
             type="email"
             placeholder="Email"
             onChange={e => this.setState({email: e.target.value})}
           />
+          <br/>
           <input
             id="password"
+            className={classnames("input", {
+              hide: auth
+            })}
             type="password"
             placeholder="Password"
             onChange={e => this.setState({password: e.target.value})}
           />
+        <br />
           <button
             type='submit'
-            className={classnames("btn btn-action", {
+            className={classnames("homeBtn btn-action", {
               hide: auth
             })}
           >
             Log In
           </button>
         </form>
-        {/* <button className="btn btn-secondary">Sign Up</button> */}
+        <h2 className={classnames("welcome", {
+            hide: !auth
+          })}>Welcome!</h2>
        <button
          onClick={this.logout.bind(this)}
-         className={classnames("btn btn-action btnLogout", {
+         className={classnames("homeBtn btn-action btnLogout", {
            hide: !auth
          })}
        >

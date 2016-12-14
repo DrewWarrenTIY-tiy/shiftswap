@@ -4,8 +4,6 @@ import React from 'react';
 
 import ServerShiftsEmp from './ServerShiftsEmp';
 
-import manager from './Manager.css';
-
 var firebase = require("firebase");
 
 export default class Server extends React.Component{
@@ -17,7 +15,7 @@ export default class Server extends React.Component{
     let fbdbRef = this.props.fbdbRef;
 
     return (
-      <div className='server'>
+      <div className='bodyRoute server'>
         <h2>Server Schedule</h2>
         <ServerShiftsEmp serverShifts={serverShifts}
         serverShiftsKeys={serverShiftsKeys}

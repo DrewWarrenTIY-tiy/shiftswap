@@ -4,8 +4,6 @@ import React from 'react';
 
 import DoorShiftsEmp from './DoorShiftsEmp';
 
-import manager from './Manager.css';
-
 var firebase = require("firebase");
 
 export default class Door extends React.Component{
@@ -17,7 +15,7 @@ export default class Door extends React.Component{
     let fbdbRef = this.props.fbdbRef;
 
     return (
-      <div className='manager'>
+      <div className='bodyRoute door'>
         <h2>Door Schedule</h2>
         <DoorShiftsEmp doorShifts={doorShifts}
         doorShiftsKeys={doorShiftsKeys}

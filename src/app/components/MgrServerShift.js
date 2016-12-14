@@ -32,7 +32,8 @@ export default class MgrServerShift extends React.Component {
 
     return (
       <div className="shift">
-        <span>{slicedShifts}: <br /> {this.state.value}</span>
+        <span>{slicedShifts}: <br /> <br /> {this.state.value}</span>
+        <br />
         <ServerList serverList={this.props.serverList}
           fbdbRef={this.props.fbdbRef}
           handleChange={this.onHandleChange.bind(this)}

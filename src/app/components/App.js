@@ -23,9 +23,11 @@ var config = {
   storageBucket: "shiftswapforsues.appspot.com"
 };
 firebase.initializeApp(config);
+var secondaryApp = firebase.initializeApp(config, "Secondary");
 
 // Get a reference to the database service
 var fbdbRef = firebase.database().ref();
+var fbdbRefTwo = secondaryApp.database().ref();
 var fbdbBarShifts = fbdbRef.child('barshifts');
 var fbdbDoorShifts = fbdbRef.child('doorshifts');
 var fbdbKitchenShifts = fbdbRef.child('kitchenshifts');
@@ -89,7 +91,9 @@ export default class App extends React.Component {
       kitchenShifts: kitchenShifts,
       kitchenShiftsKeys: kitchenShiftsKeys,
       fbdbRef: fbdbRef,
+      fbdbRefTwo: fbdbRefTwo,
       name: "",
+      secondaryApp: secondaryApp,
       serverList: serverList,
       serverShifts: serverShifts,
       serverShiftsKeys: serverShiftsKeys,
@@ -296,9 +300,11 @@ export default class App extends React.Component {
                 barShifts={this.state.barShifts}
                 barShiftsKeys={this.state.barShiftsKeys}
                 fbdbRef={this.state.fbdbRef}
+                fbdbRefTwo={this.state.fbdbRefTwo}
                 kitchenList={this.state.kitchenList}
                 kitchenShifts={this.state.kitchenShifts}
                 kitchenShiftsKeys={this.state.kitchenShiftsKeys}
+                secondaryApp={this.state.secondaryApp}
                 serverList={this.state.serverList}
                 serverShifts={this.state.serverShifts}
                 serverShiftsKeys={this.state.serverShiftsKeys}

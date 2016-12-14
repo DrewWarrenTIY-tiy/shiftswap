@@ -4,8 +4,6 @@ import React from 'react';
 import { Link } from 'react-router';
 import classnames from 'classnames';
 
-import navBar from './Nav.css'
-
 export default class Nav extends React.Component {
   render () {
     const { auth } = this.props;
@@ -16,24 +14,24 @@ export default class Nav extends React.Component {
     const { isServer } = this.props;
     return(
       <nav>
-        <ul className="navBar">
-          <li className={classnames("navItem", {
+        <div className="navBar">
+          <Link to='/manager'><button className={classnames("navItem", {
             hide: !admin
-          })}><Link to='/manager'>Manager</Link></li>
-          <li className={classnames("navItem", {
+          })}>Manager</button></Link>
+        <Link to='/bar'><button className={classnames("navItem", {
             hide: !isBar
-          })}><Link to='/bar'>Bar</Link></li>
-          <li className={classnames("navItem", {
+          })}>Bar</button></Link>
+        <Link to='/door'><button className={classnames("navItem", {
               hide: !isDoor
-            })}><Link to='/door'>Door</Link></li>
-          <li className={classnames("navItem", {
+            })}>Door</button></Link>
+          <Link to='/kitchen'><button className={classnames("navItem", {
               hide: !isKitchen
-            })}><Link to='/kitchen'>Kitchen</Link></li>
-          <li className={classnames("navItem", {
+            })}>Kitchen</button></Link>
+          <Link to='/server'><button className={classnames("navItem", {
             hide: !isServer
-          })}><Link to='/server'>Server</Link></li>
-          <li><Link to='/'>Home</Link></li>
-        </ul>
+          })}>Server</button></Link>
+        <Link to='/'><button className="navItem">Home</button></Link>
+        </div>
       </nav>
     );
   }
