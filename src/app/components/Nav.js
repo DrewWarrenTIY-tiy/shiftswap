@@ -14,24 +14,24 @@ export default class Nav extends React.Component {
     const { isServer } = this.props;
     return(
       <nav>
-        <ul className="navBar">
-          <li className={classnames("navItem", {
+        <div className="navBar">
+          <button className={classnames("navItem", {
             hide: !admin
-          })}><Link to='/manager'>Manager</Link></li>
-          <li className={classnames("navItem", {
+          })}><Link to='/manager'>Manager</Link></button>
+        <button className={classnames("navItem", {
             hide: !isBar
-          })}><Link to='/bar'>Bar</Link></li>
-          <li className={classnames("navItem", {
+          })}><Link to='/bar'>Bar</Link></button>
+        <button className={classnames("navItem", {
               hide: !isDoor
-            })}><Link to='/door'>Door</Link></li>
-          <li className={classnames("navItem", {
+            })}><Link to='/door'>Door</Link></button>
+          <button className={classnames("navItem", {
               hide: !isKitchen
-            })}><Link to='/kitchen'>Kitchen</Link></li>
-          <li className={classnames("navItem", {
+            })}><Link to='/kitchen'>Kitchen</Link></button>
+          <button className={classnames("navItem", {
             hide: !isServer
-          })}><Link to='/server'>Server</Link></li>
-          <li><Link to='/'>Home</Link></li>
-        </ul>
+          })}><Link to='/server'>Server</Link></button>
+        <button className="navItem"><Link to='/'>Home</Link></button>
+        </div>
       </nav>
     );
   }

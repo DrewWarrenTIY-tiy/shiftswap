@@ -23,6 +23,7 @@ export default class KitchenShiftEmp extends React.Component {
       <div className="shift">
         <span>{slicedShifts}: <br /> {this.state.value}</span>
         <br />
+        <br />
       </div>
     )
   }

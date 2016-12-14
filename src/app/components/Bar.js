@@ -15,7 +15,7 @@ export default class Bar extends React.Component{
     let fbdbRef = this.props.fbdbRef;
 
     return (
-      <div className='manager'>
+      <div className='bar'>
         <h2>Bar Schedule</h2>
         <BarShiftsEmp barShifts={barShifts}
         barShiftsKeys={barShiftsKeys}

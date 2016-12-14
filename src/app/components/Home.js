@@ -52,7 +52,10 @@ export default class Home extends React.Component {
     return (
       <div className="home">
         <h1>Home</h1>
-        <form onSubmit={this.login.bind(this)}>
+        <form
+          className="loginForm"
+          onSubmit={this.login.bind(this)}
+          >
           <input
             id="email"
             className={classnames("input", {
@@ -62,6 +65,7 @@ export default class Home extends React.Component {
             placeholder="Email"
             onChange={e => this.setState({email: e.target.value})}
           />
+          <br/>
           <input
             id="password"
             className={classnames("input", {
@@ -71,9 +75,10 @@ export default class Home extends React.Component {
             placeholder="Password"
             onChange={e => this.setState({password: e.target.value})}
           />
+        <br />
           <button
             type='submit'
-            className={classnames("btn btn-action", {
+            className={classnames("homeBtn btn-action", {
               hide: auth
             })}
           >
@@ -85,7 +90,7 @@ export default class Home extends React.Component {
           })}>Welcome!</h2>
        <button
          onClick={this.logout.bind(this)}
-         className={classnames("btn btn-action btnLogout", {
+         className={classnames("homeBtn btn-action btnLogout", {
            hide: !auth
          })}
        >

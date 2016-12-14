@@ -32,7 +32,8 @@ export default class MgrDoorShift extends React.Component {
 
     return (
       <div className="shift">
-        <span>{slicedShifts}: <br /> {this.state.value}</span>
+        <span>{slicedShifts}: <br /> <br /> {this.state.value}</span>
+        <br />
         <DoorList doorList={this.props.doorList}
           fbdbRef={this.props.fbdbRef}
           handleChange={this.onHandleChange.bind(this)}
