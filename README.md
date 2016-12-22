@@ -1,6 +1,6 @@
 Synopsis
 
-This project should create a web app for scheduling shift workers in any industry. Will use ReactJS and Firebase.
+This project creates a web app for scheduling shift workers in any industry. Uses ReactJS on the front-end for fast performance and implements Firebase on the back-end to store user data and schedules.
 
 Motivation
 
