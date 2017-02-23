@@ -145,7 +145,7 @@
     display: flex;
     flex-flow: column wrap;
     min-width: 900px;
-    height: 400px;
+    max-height: 440px;
   }
 
   .barShiftsEmp {
